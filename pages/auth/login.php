@@ -54,12 +54,12 @@
           </div>
           
           <div class="row">
-            <div class="col-12 form-group">
+            <!-- <div class="col-12 form-group">
               <select name="login_type" id="login_type" class="form-control">
                 <option value="1">Pimpinan</option>
                 <option value="2">Admin</option>
               </select>
-            </div>
+            </div> -->
           </div>
 
           <div class="row">
@@ -94,18 +94,17 @@
 
   <script>
     const doLogin = async (data) => {
-      console.log("<?= $base_url ?>/api/login.api.php");
+      console.log("<?= $base_url ?>api/login.api.php");
 
       var bodyFormData = new FormData();
 
       bodyFormData.append("username", data.username);
       bodyFormData.append("password", data.password);
-      bodyFormData.append("loginType", data.loginType)
+      // bodyFormData.append("loginType", data.loginType)
 
       return await axios.post("<?= $base_url ?>api/login.api.php", {
         username: data.username,
-        password: data.password,
-        loginType: data.loginType
+        password: data.password
       }, {
         headers: {
           "Content-Type": "multipart/form-data"
@@ -117,12 +116,12 @@
       const username = document.getElementById("username").value;
       const password = document.getElementById("password").value;
 
-      const loginType = document.getElementById('login_type').value;
+      // const loginType = document.getElementById('login_type').value;
 
       const data = {
         username,
         password,
-        loginType
+        // loginType
       };
 
       const result = await doLogin(data);

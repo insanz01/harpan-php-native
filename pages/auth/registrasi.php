@@ -64,12 +64,13 @@
           </div>
           
           <div class="row">
-            <div class="col-12 form-group">
+            <input type="hidden" id="login_type" value="3">
+            <!-- <div class="col-12 form-group">
               <select name="login_type" id="login_type" class="form-control">
                 <option value="1">Pimpinan</option>
                 <option value="2">Admin</option>
               </select>
-            </div>
+            </div> -->
           </div>
 
           <div class="row">
