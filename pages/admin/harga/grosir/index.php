@@ -36,7 +36,7 @@
       </div>
       <div class="col-8">
         <div class="form-group">
-        <?php if($role != 3): ?>
+        <?php if($role_id != 3): ?>
           <a href="#" class="btn btn-info float-right" role="button" data-toggle="modal" data-target="#laporanModal" data-id="harga-grosir" onclick="printLaporan(this)">
             <i class="fas fa-fw fa-print"></i>
             Cetak
