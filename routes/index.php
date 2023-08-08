@@ -32,6 +32,9 @@
         case "laporan-inflasi":
           include "pages/admin/laporan/inflasi.php";
           break;
+        case "laporan-kritik-saran":
+          include "pages/admin/laporan/kritik-saran.php";
+          break;
       }
     }
   } else {

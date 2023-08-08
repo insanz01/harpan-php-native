@@ -44,10 +44,10 @@
       </div>
       <div class="col-4">
         <div class="form-group">
-          <!-- <a href="#" class="btn btn-info float-right" role="button">
+          <a href="#" class="btn btn-info float-right" role="button" data-toggle="modal" data-target="#laporanModal" data-id="kritik-saran" onclick="printLaporan(this)">
             <i class="fas fa-fw fa-print"></i>
             Cetak
-          </a> -->
+          </a>
         </div>
       </div>
     </div>

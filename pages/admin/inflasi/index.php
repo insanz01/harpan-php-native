@@ -35,13 +35,13 @@
           <input type="date" class="form-control">
         </div> -->
       </div>
-      <div class="col-4">
-        <!-- <div class="form-group">
-          <label for="laporan-periode">Laporan Periode</label>
-          <input type="date" class="form-control">
-        </div>     -->
-      </div>
-      <div class="col-4">
+      <div class="col-8">
+        <div class="form-group">
+          <a href="#" class="btn btn-info float-right" role="button" data-toggle="modal" data-target="#laporanModal" data-id="inflasi" onclick="printLaporan(this)">
+            <i class="fas fa-fw fa-print"></i>
+            Cetak
+          </a>
+        </div>
         <div class="form-group">
           <!-- <a href="#" class="btn btn-info float-right" role="button">
             <i class="fas fa-fw fa-print"></i>

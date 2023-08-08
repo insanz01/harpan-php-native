@@ -359,6 +359,12 @@
                     <p>Data Inflasi</p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="#!" class="nav-link" data-toggle="modal" data-target="#laporanModal" data-id="kritik-saran" onclick="printLaporan(this)">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Data Kritik Saran</p>
+                  </a>
+                </li>
                 <!-- <li class="nav-item">
                   <a href="?page=laporan-harga-eceran&type=laporan" class="nav-link" target="_blank">
                     <i class="far fa-circle nav-icon"></i>
@@ -524,6 +530,9 @@
         case "inflasi":
           targetLaporan = "?page=laporan-inflasi&type=laporan";
           break;
+        case "kritik-saran":
+        targetLaporan = "?page=laporan-kritik-saran&type=laporan";
+        break;
       }
 
       const filterLaporan = document.getElementById('filter-laporan');
