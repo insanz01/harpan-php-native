@@ -52,6 +52,22 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
+          <label for="">Nama</label>
+          <input type="text" name="nama" id="nama" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="">Alamat</label>
+          <input type="text" name="alamat" id="alamat" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="">Email</label>
+          <input type="email" name="email" id="email" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="">No HP</label>
+          <input type="text" name="no_hp" id="no_hp" class="form-control">
+        </div>
+        <div class="form-group">
           <label for="">Masukan kritik dan saran anda pada kolom ini</label>
           <textarea name="kritik_saran" id="kritik_saran" class="form-control" cols="30" rows="10"></textarea>
         </div>
@@ -70,9 +86,7 @@
   }
 
   const saveKritikSaran = async (data) => {
-    return await axios.post(`<?= $base_url ?>/api/add-kritik-saran.api.php`, {
-      kritik_saran: data.kritik_saran
-    }, {
+    return await axios.post(`<?= $base_url ?>/api/add-kritik-saran.api.php`, data, {
       headers: {
         "Content-Type": "multipart/form-data"
       }
@@ -81,9 +95,14 @@
 
   const kirimKritikSaran = async () => {
     const kritikSaran = document.getElementById('kritik_saran').value;
+    const nama = document.getElementById('nama').value;
+    const alamat = document.getElementById('alamat').value;
+    const no_hp = document.getElementById('no_hp').value;
+    const email = document.getElementById('email').value;
 
     const data = {
-      "kritik_saran": kritikSaran
+      "kritik_saran": kritikSaran,
+      nama, alamat, no_hp, email
     }
 
     const result = await saveKritikSaran(data);

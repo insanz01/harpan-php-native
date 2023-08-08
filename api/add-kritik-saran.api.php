@@ -7,8 +7,12 @@ include "../helper/validate.php";
 include "../database/db.php";
 
 $kritik_saran = validate_input($connection, $_POST["kritik_saran"]);
+$nama = validate_input($connection, $_POST["nama"]);
+$alamat = validate_input($connection, $_POST["alamat"]);
+$email = validate_input($connection, $_POST["email"]);
+$no_hp = validate_input($connection, $_POST["no_hp"]);
 
-$query = "INSERT INTO kritik_saran (pesan) VALUES ('$kritik_saran')";
+$query = "INSERT INTO kritik_saran (nama, alamat, email, no_hp, pesan) VALUES ('$nama', '$alamat', '$email', '$no_hp', '$kritik_saran')";
 
 $result = mysqli_query($connection, $query);
 
