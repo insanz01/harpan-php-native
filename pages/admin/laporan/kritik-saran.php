@@ -43,7 +43,7 @@
         <hr size="2px" color="black">
         </p>
 	<center>
-		<h4>DATA LAPORAN INFLASI</h4>
+		<h4>DATA LAPORAN KRITIK DAN SARAN</h4>
 	</center>
 
   <table border="1" style="width: 100%">
