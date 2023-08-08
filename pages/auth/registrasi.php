@@ -151,7 +151,7 @@
 
     document.onkeydown = (e) => {
       if(e.code == "Enter") {
-        login()
+        register()
       }
     };
   </script>

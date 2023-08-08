@@ -35,12 +35,12 @@
       </div>
       <div class="col-8">
         <div class="form-group">
+        <?php if($role != 3): ?>
           <a href="#" class="btn btn-info float-right" role="button" data-toggle="modal" data-target="#laporanModal" data-id="harga-produsen" onclick="printLaporan(this)">
             <i class="fas fa-fw fa-print"></i>
             Cetak
           </a>
-        </div>
-        <div class="form-group">
+        <?php endif; ?>
           <!-- <a href="#" class="btn btn-info float-right" role="button" data-toggle="modal" data-target="#cetakModal">
             <i class="fas fa-fw fa-print"></i>
             Cetak

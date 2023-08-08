@@ -279,7 +279,7 @@
               </li>
             <?php endif; ?>
 
-            <?php if($role_id == 1 && $role_id == 2): ?>
+            <?php if($role_id == 1 || $role_id == 2): ?>
               <li class="nav-item">
                 <a href="?page=aktifasi" class="nav-link">
                   <i class="nav-icon fas fa-users"></i>
