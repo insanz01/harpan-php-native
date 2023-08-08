@@ -47,7 +47,7 @@
             <i class="fas fa-fw fa-print"></i>
             Cetak
           </a> -->
-          <?php if($role_id == 2): ?>
+          <?php if($role_id == 2 || $role_id == 3): ?>
             <a href="?page=eceran&action=tambah" class="btn btn-success float-right mx-2" role="button">
               <i class="fas fa-fw fa-plus"></i>
               Tambah
@@ -98,11 +98,11 @@
                     </td>
                     <td>
                       <?php if($role_id != 1): ?>
-                        <a href="#" class="btn btn-danger float-right" role="button" data-toggle="modal" data-target="#hapusModal" onclick="selectDeleteData(<?= $dt[id] ?>)">
+                        <a href="#" class="btn btn-danger float-right" role="button" data-toggle="modal" data-target="#hapusModal" onclick="selectDeleteData(<?= $dt['id'] ?>)">
                           <i class="fas fa-fw fa-trash"></i>
                           Hapus
                         </a>
-                        <a href="?page=eceran&action=edit&id=<?= $dt[id] ?>" class="btn btn-primary float-right mx-2" role="button">
+                        <a href="?page=eceran&action=edit&id=<?= $dt['id'] ?>" class="btn btn-primary float-right mx-2" role="button">
                           <i class="fas fa-fw fa-edit"></i>
                           Ubah
                         </a>
