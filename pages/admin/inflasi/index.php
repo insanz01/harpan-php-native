@@ -1,5 +1,6 @@
 <?php
   include "config/config.php";
+  include "controller/admin-inflasi.controller.php";
 
   $role_id = 0;
   if(isset($_SESSION["SESS_HARPAN_ROLE_ID"])) {
@@ -37,17 +38,17 @@
       </div>
       <div class="col-8">
         <div class="form-group">
-          <a href="#" class="btn btn-info float-right" role="button" data-toggle="modal" data-target="#laporanModal" data-id="inflasi" onclick="printLaporan(this)">
-            <i class="fas fa-fw fa-print"></i>
-            Cetak
-          </a>
-        </div>
-        <div class="form-group">
+          <?php if($role_id != 3): ?>
+            <a href="#" class="btn btn-info float-right" role="button" data-toggle="modal" data-target="#laporanModal" data-id="inflasi" onclick="printLaporan(this)">
+              <i class="fas fa-fw fa-print"></i>
+              Cetak
+            </a>
+          <?php endif; ?>
           <!-- <a href="#" class="btn btn-info float-right" role="button">
             <i class="fas fa-fw fa-print"></i>
             Cetak
           </a> -->
-          <?php if($role_id == 2): ?>
+          <?php if($role_id == 2 || $role_id == 3): ?>
             <a href="?page=inflasi&action=tambah" class="btn btn-success float-right mx-2" role="button">
               <i class="fas fa-fw fa-plus"></i>
               Tambah
@@ -71,12 +72,35 @@
                 <th>Harga Eceran Sebelumnya</th>
                 <th>Nilai Inflasi</th>
                 <th>Tanggal</th>
-                <?php if($role_id == 2): ?>
+                <?php if($role_id == 2 || $role_id == 3): ?>
                   <th>Opsi</th>
                 <?php endif; ?>
               </thead>
-              <tbody id="tabel-inflasi">
-    
+              <tbody>
+                <?php $number = 1; ?>
+                <?php foreach($data as $datum): ?>
+                  <tr>
+                    <td><?= $number++ ?></td>
+                    <td><?= $datum['nama'] ?></td>
+                    <td><?= $datum['satuan'] ?></td>
+                    <td><?= $datum['harga_baru'] ?></td>
+                    <td><?= $datum['harga_lama'] ?></td>
+                    <td><?= $datum['nilai'] ?></td>
+                    <td><?= $datum['created_at'] ?></td>
+                    <?php if($role_id == 2 || $role_id == 3): ?>
+                      <td>
+                        <a href="#" class="btn btn-danger float-right" role="button" data-toggle="modal" data-target="#hapusModal" onclick="selectDeleteData(<?= $datum['id'] ?>)">
+                          <i class="fas fa-fw fa-trash"></i>
+                          Hapus
+                        </a>
+                        <a href="index.php?page=inflasi&action=edit&id=<?= $datum['id'] ?>" class="btn btn-primary float-right mx-2" role="button">
+                          <i class="fas fa-fw fa-edit"></i>
+                          Ubah
+                        </a>
+                      </td>
+                    <?php endif; ?>
+                  </tr>
+                <?php endforeach; ?>
               </tbody>
             </table>
           </div>

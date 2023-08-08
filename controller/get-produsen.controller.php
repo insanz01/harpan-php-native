@@ -3,12 +3,12 @@
 include_once "helper/helper.php";
 include_once "database/db.php";
 
-$query = "SELECT harga_produsen.id, harga_produsen.harga, komoditas.id as id_komoditas, komoditas.nama as komoditas, komoditas.satuan, harga_produsen.approved_at, harga_produsen.created_at, harga_produsen.updated_at FROM harga_produsen JOIN komoditas ON harga_produsen.id_komoditas = komoditas.id WHERE harga_produsen.deleted_at is NULL";
+$query = "SELECT harga_produsen.id, harga_produsen.harga, komoditas.id as id_komoditas, komoditas.nama as komoditas, komoditas.satuan, harga_produsen.approved_at, harga_produsen.created_at, harga_produsen.updated_at FROM harga_produsen JOIN komoditas ON harga_produsen.id_komoditas = komoditas.id WHERE harga_produsen.deleted_at is NULL ORDER BY harga_produsen.created_at DESC";
 
 if(isset($_GET["id"])) {
   $id = $_GET["id"];
 
-  $query = "SELECT harga_produsen.id, harga_produsen.harga, komoditas.id as id_komoditas, komoditas.nama as komoditas, komoditas.satuan, harga_produsen.approved_at, harga_produsen.created_at, harga_produsen.updated_at FROM harga_produsen JOIN komoditas ON harga_produsen.id_komoditas = komoditas.id WHERE harga_produsen.deleted_at is NULL AND harga_produsen.id = $id";
+  $query = "SELECT harga_produsen.id, harga_produsen.harga, komoditas.id as id_komoditas, komoditas.nama as komoditas, komoditas.satuan, harga_produsen.approved_at, harga_produsen.created_at, harga_produsen.updated_at FROM harga_produsen JOIN komoditas ON harga_produsen.id_komoditas = komoditas.id WHERE harga_produsen.deleted_at is NULL AND harga_produsen.id = $id ORDER BY harga_produsen.created_at DESC";
 }
 
 $result = mysqli_query($connection, $query);

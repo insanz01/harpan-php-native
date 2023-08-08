@@ -3,12 +3,12 @@
 include_once "helper/helper.php";
 include_once "database/db.php";
 
-$query = "SELECT harga_grosir.id, harga_grosir.harga, komoditas.nama as komoditas, komoditas.id as id_komoditas, komoditas.satuan, harga_grosir.approved_at, harga_grosir.created_at, harga_grosir.updated_at FROM harga_grosir JOIN komoditas ON harga_grosir.id_komoditas = komoditas.id WHERE harga_grosir.deleted_at is NULL";
+$query = "SELECT harga_grosir.id, harga_grosir.harga, komoditas.nama as komoditas, komoditas.id as id_komoditas, komoditas.satuan, harga_grosir.approved_at, harga_grosir.created_at, harga_grosir.updated_at FROM harga_grosir JOIN komoditas ON harga_grosir.id_komoditas = komoditas.id WHERE harga_grosir.deleted_at is NULL ORDER BY harga_grosir.created_at DESC";
 
 if(isset($_GET["id"])) {
   $id = $_GET["id"];
 
-  $query = "SELECT harga_grosir.id, harga_grosir.harga, komoditas.nama as komoditas, komoditas.id as id_komoditas, komoditas.satuan, harga_grosir.approved_at, harga_grosir.created_at, harga_grosir.updated_at FROM harga_grosir JOIN komoditas ON harga_grosir.id_komoditas = komoditas.id WHERE harga_grosir.deleted_at is NULL AND harga_grosir.id = $id";
+  $query = "SELECT harga_grosir.id, harga_grosir.harga, komoditas.nama as komoditas, komoditas.id as id_komoditas, komoditas.satuan, harga_grosir.approved_at, harga_grosir.created_at, harga_grosir.updated_at FROM harga_grosir JOIN komoditas ON harga_grosir.id_komoditas = komoditas.id WHERE harga_grosir.deleted_at is NULL AND harga_grosir.id = $id ORDER BY harga_grosir.created_at DESC";
 }
 
 $result = mysqli_query($connection, $query);

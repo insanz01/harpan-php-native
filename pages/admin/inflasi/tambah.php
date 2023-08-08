@@ -95,6 +95,7 @@
   const submitData = async () => {
     const nominal = document.getElementById("nominal").value;
     const nilai = document.getElementById("nilai").value;
+    const id_komoditas = document.getElementById("id_komoditas").value;
     const id_permintaan = document.getElementById("id_komoditas").value;
     const tanggal = document.getElementById("tanggal").value;
 
@@ -102,6 +103,7 @@
       nominal,
       nilai,
       id_permintaan,
+      id_komoditas,
       tanggal
     }
 
