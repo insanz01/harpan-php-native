@@ -8,6 +8,12 @@ $totalStokQuery = "SELECT COUNT(*) as total FROM stok_komoditas";
 $totalPermintaanQuery = "SELECT COUNT(*) as total FROM permintaan";
 $totalInflasiQuery = "SELECT COUNT(*) as total FROM inflasi";
 
+$eceranUnverifiedQuery = "SELECT COUNT(*) as total FROM harga_eceran WHERE approved_at is NULL";
+$distributorUnverifiedQuery = "SELECT COUNT(*) as total FROM harga_distributor WHERE approved_at is NULL";
+$grosirUnverifiedQuery = "SELECT COUNT(*) as total FROM harga_grosir WHERE approved_at is NULL";
+$nasionalUnverifiedQuery = "SELECT COUNT(*) as total FROM harga_nasional WHERE approved_at is NULL";
+$produsenUnverifiedQuery = "SELECT COUNT(*) as total FROM harga_produsen WHERE approved_at is NULL";
+
 $resultKomoditas = mysqli_query($connection, $totalKomoditasQuery);
 $totalKomoditas = 0;
 if($resultKomoditas->num_rows > 0) {
@@ -34,4 +40,37 @@ $totalInflasi = 0;
 if($resultInflasi->num_rows > 0) {
   $totalInflasi = $resultInflasi->fetch_assoc();
   $totalInflasi = $totalInflasi["total"];
+}
+
+$eceranUnverifiedResult = mysqli_query($connection, $eceranUnverifiedQuery);
+$distributorUnverifiedResult = mysqli_query($connection, $distributorUnverifiedQuery);
+$grosirUnverifiedResult = mysqli_query($connection, $grosirUnverifiedQuery);
+$nasionalUnverifiedResult = mysqli_query($connection, $nasionalUnverifiedQuery);
+$produsenUnverifiedResult = mysqli_query($connection, $produsenUnverifiedQuery);
+
+$totalUnverified = 0;
+
+if($eceranUnverifiedResult->num_rows > 0) {
+  $totalTemp = $eceranUnverifiedResult->fetch_assoc();
+  $totalUnverified += $totalTemp["total"];
+}
+
+if($distributorUnverifiedResult->num_rows > 0) {
+  $totalTemp = $distributorUnverifiedResult->fetch_assoc();
+  $totalUnverified += $totalTemp["total"];
+}
+
+if($grosirUnverifiedResult->num_rows > 0) {
+  $totalTemp = $grosirUnverifiedResult->fetch_assoc();
+  $totalUnverified += $totalTemp["total"];
+}
+
+if($nasionalUnverifiedResult->num_rows > 0) {
+  $totalTemp = $nasionalUnverifiedResult->fetch_assoc();
+  $totalUnverified += $totalTemp["total"];
+}
+
+if($produsenUnverifiedResult->num_rows > 0) {
+  $totalTemp = $produsenUnverifiedResult->fetch_assoc();
+  $totalUnverified += $totalTemp["total"];
 }

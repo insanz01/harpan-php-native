@@ -8,6 +8,13 @@
   }
 ?>
 
+<style>
+  .bg-ungu-unyu {
+    background-color: #b19cd9;
+    color: white;
+  }
+</style>
+
 <div class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
@@ -98,6 +105,23 @@
           <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
+
+      <?php if($role_id == 2 || $role_id == 1): ?>
+        <div class="col-lg-12 col-12">
+          <!-- small box -->
+          <div class="small-box bg-ungu-unyu">
+            <div class="inner">
+              <h3><?= $totalUnverified ?></h3>
+
+              <p>Belum Verifikasi</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+      <?php endif; ?>
       <!-- ./col -->
     </div>
     <!-- /.row -->
