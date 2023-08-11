@@ -486,7 +486,8 @@
   
             <div class="form-group" id="filter-pekan">
               <label for="data-filter-pekan">Filter Data</label>
-              <input type="date" class="form-control" name="data_filter_pekan" id="data-filter-pekan">
+              <input type="date" class="form-control" name="data_filter_pekan_awal" id="data-filter-pekan-awal">
+              <input type="date" class="form-control" name="data_filter_pekan_akhir" id="data-filter-pekan-akhir">
             </div>
   
           </div>

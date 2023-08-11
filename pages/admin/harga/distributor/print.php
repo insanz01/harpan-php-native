@@ -117,7 +117,7 @@
     </div>
     <!-- /.row -->
      <br>
-     <div class="row">
+    <div class="row">
       <div class="col">
         <form method="post" class="form-inline">
            <input type="date" name="tgl_mulai" class="form-control">
@@ -125,7 +125,7 @@
            <button type="submit" name="filter-tanggal" class="btn btn-info ml-2">Filter</button>
         </form>
        </div>
-     </div>
+    </div>
     
     <div class="row mt-2">
       <div class="col-12 mx-auto">
