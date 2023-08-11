@@ -2,6 +2,19 @@
   include "config/config.php";
 ?>
 
+<style>
+    #captcha-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: bold;
+      height: 100px;
+      border: 2px solid #ccc;
+      margin: 20px;
+    }
+  </style>
+
 <div class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
@@ -71,6 +84,9 @@
           <label for="">Masukan kritik dan saran anda pada kolom ini</label>
           <textarea name="kritik_saran" id="kritik_saran" class="form-control" cols="30" rows="10"></textarea>
         </div>
+        <div class="form-group">
+          <div id="captcha-box">Loading CAPTCHA...</div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -80,6 +96,31 @@
   </div>
 </div>
 
+<script>
+  // Generate random CAPTCHA text
+  function generateCaptchaText(length) {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let captchaText = '';
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      captchaText += characters[randomIndex];
+    }
+    return captchaText;
+  }
+
+  // Render CAPTCHA
+  function renderCaptcha() {
+    const captchaBox = document.getElementById('captcha-box');
+    const captchaText = generateCaptchaText(6);
+    captchaBox.textContent = captchaText;
+  }
+
+  // Initialize CAPTCHA on page load
+  window.onload = renderCaptcha;
+
+  // Refresh CAPTCHA when clicked
+  document.getElementById('captcha-box').addEventListener('click', renderCaptcha);
+</script>
 <script>
   const loadData = async () => {
     return await axios.get(`<?= $base_url ?>/api/publik-stok.api.php`).then(res => res.data);
