@@ -85,7 +85,10 @@
           <textarea name="kritik_saran" id="kritik_saran" class="form-control" cols="30" rows="10"></textarea>
         </div>
         <div class="form-group">
-          <div id="captcha-box">Loading CAPTCHA...</div>
+          <img src="generate.php" alt="captcha">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" name="captcha" id="captcha" maxlength="5" placeholder="kode captcha">
         </div>
       </div>
       <div class="modal-footer">
@@ -140,10 +143,18 @@
     const alamat = document.getElementById('alamat').value;
     const no_hp = document.getElementById('no_hp').value;
     const email = document.getElementById('email').value;
+    const captcha = document.getElementById('captcha').value;
+
+    const captchaSession = `<?= $_SESSION["code"] ?>`;
+
+    if(captchaSession != captcha) {
+      alert("captcha yang anda masukan salah!");
+      return;
+    }
 
     const data = {
       "kritik_saran": kritikSaran,
-      nama, alamat, no_hp, email
+      nama, alamat, no_hp, email, captcha
     }
 
     const result = await saveKritikSaran(data);
