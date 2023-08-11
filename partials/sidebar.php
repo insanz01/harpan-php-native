@@ -332,7 +332,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#!" class="nav-link" data-toggle="modal" data-target="#laporanModal" data-id="harga-distributor" onclick="printLaporan(this)">
+                  <a href="?page=distributor&action=print" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Data Harga Distributor</p>
                   </a>
@@ -533,8 +533,8 @@
           targetLaporan = "?page=laporan-inflasi&type=laporan";
           break;
         case "kritik-saran":
-        targetLaporan = "?page=laporan-kritik-saran&type=laporan";
-        break;
+          targetLaporan = "?page=laporan-kritik-saran&type=laporan";
+          break;
       }
 
       const filterLaporan = document.getElementById('filter-laporan');
@@ -550,8 +550,11 @@
       if(value === "MINGGUAN") {
         kolomBulan.classList.add("hidden");
         kolomPekan.classList.remove("hidden");
-      } else {
+      } else if(value === "BULANAN") {
         kolomBulan.classList.remove("hidden");
+        kolomPekan.classList.add("hidden");
+      } else {
+        kolomBulan.classList.add("hidden");
         kolomPekan.classList.add("hidden");
       }
     }

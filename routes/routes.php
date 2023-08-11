@@ -112,6 +112,8 @@
         } else {
           include "pages/admin/harga/distributor/index.php";
         }
+      } else if($action == "print") {
+        include "pages/admin/harga/distributor/print.php";
       } else {
         include "pages/admin/harga/distributor/index.php";
       }
