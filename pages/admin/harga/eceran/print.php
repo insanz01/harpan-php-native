@@ -98,9 +98,6 @@
 </section>
 
 <!-- Modal -->
-
-
-
 <!-- Modal Hapus -->
 <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -148,7 +145,7 @@
   let VERIFIKASI_ID = 0;
 
   const loadData = async () => {
-    return await axios.get(`<?= $base_url ?>/api/get-distributor.api.php`).then(res => res.data);
+    return await axios.get(`<?= $base_url ?>/api/get-eceran.api.php`).then(res => res.data);
   }
 
   const printReport = async () => {
@@ -164,7 +161,7 @@
   }
 
   const doDelete = async (data) => {
-    return await axios.post(`<?= $base_url ?>/api/delete-distributor.api.php`, data, {
+    return await axios.post(`<?= $base_url ?>/api/delete-eceran.api.php`, data, {
       headers: {
         "Content-Type": "multipart/form-data"
       }
@@ -191,7 +188,7 @@
   }
 
   const doVerifikasi = async (data) => {
-    return await axios.post(`<?= $base_url ?>/api/approve-distributor.api.php`, data, {
+    return await axios.post(`<?= $base_url ?>/api/approve-eceran.api.php`, data, {
       headers: {
         "Content-Type": "multipart/form-data"
       }
