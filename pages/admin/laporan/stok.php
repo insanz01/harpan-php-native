@@ -15,7 +15,7 @@
     // $weekNumber = date("W", strtotime($dataFilterPekan));
 
     // $query = "SELECT stok_komoditas.id, stok_komoditas.stok, stok_komoditas.id_komoditas, komoditas.satuan, komoditas.nama as komoditas, stok_komoditas.approved_at, stok_komoditas.created_at, stok_komoditas.updated_at FROM stok_komoditas JOIN komoditas ON stok_komoditas.id_komoditas = komoditas.id WHERE stok_komoditas.deleted_at is NULL AND WEEK(stok_komoditas.created_at) = $weekNumber";
-    $query = "SELECT stok_komoditas.id, stok_komoditas.stok, stok_komoditas.id_komoditas, komoditas.satuan, komoditas.nama as komoditas, stok_komoditas.approved_at, stok_komoditas.created_at, stok_komoditas.updated_at FROM stok_komoditas JOIN komoditas ON stok_komoditas.id_komoditas = komoditas.id WHERE stok_komoditas.deleted_at is NULL AND ((DATE(stok_komoditas.created_at) BETWEEN '$dataFilterPekanAwal' AND '$dataFilterPekanAkhir)' OR DATE(stok_komoditas.created_at) = '$dataFilterPekanAwal' OR DATE(stok_komoditas.created_at) = '$dataFilterPekanAkhir')"";
+    $query = "SELECT stok_komoditas.id, stok_komoditas.stok, stok_komoditas.id_komoditas, komoditas.satuan, komoditas.nama as komoditas, stok_komoditas.approved_at, stok_komoditas.created_at, stok_komoditas.updated_at FROM stok_komoditas JOIN komoditas ON stok_komoditas.id_komoditas = komoditas.id WHERE stok_komoditas.deleted_at is NULL AND ((DATE(stok_komoditas.created_at) BETWEEN '$dataFilterPekanAwal' AND '$dataFilterPekanAkhir)' OR DATE(stok_komoditas.created_at) = '$dataFilterPekanAwal' OR DATE(stok_komoditas.created_at) = '$dataFilterPekanAkhir')";
   }
 
   $result = mysqli_query($connection, $query);

@@ -15,7 +15,7 @@
     // $weekNumber = date("W", strtotime($dataFilterPekan));
 
     // $query = "SELECT harga_eceran.id, harga_eceran.harga, komoditas.nama as komoditas, komoditas.id as id_komoditas, komoditas.satuan, harga_eceran.approved_at, harga_eceran.created_at, harga_eceran.updated_at FROM harga_eceran JOIN komoditas ON harga_eceran.id_komoditas = komoditas.id WHERE harga_eceran.deleted_at is NULL AND harga_eceran.approved_at is not NULL AND WEEK(harga_eceran.created_at) = $weekNumber";
-    $query = "SELECT harga_eceran.id, harga_eceran.harga, komoditas.nama as komoditas, komoditas.id as id_komoditas, komoditas.satuan, harga_eceran.approved_at, harga_eceran.created_at, harga_eceran.updated_at FROM harga_eceran JOIN komoditas ON harga_eceran.id_komoditas = komoditas.id WHERE harga_eceran.deleted_at is NULL AND harga_eceran.approved_at is not NULL AND ((DATE(harga_eceran.created_at) BETWEEN '$dataFilterPekanAwal' AND '$dataFilterPekanAkhir)' OR DATE(harga_eceran.created_at) = '$dataFilterPekanAwal' OR DATE(harga_eceran.created_at) = '$dataFilterPekanAkhir');
+    $query = "SELECT harga_eceran.id, harga_eceran.harga, komoditas.nama as komoditas, komoditas.id as id_komoditas, komoditas.satuan, harga_eceran.approved_at, harga_eceran.created_at, harga_eceran.updated_at FROM harga_eceran JOIN komoditas ON harga_eceran.id_komoditas = komoditas.id WHERE harga_eceran.deleted_at is NULL AND harga_eceran.approved_at is not NULL AND ((DATE(harga_eceran.created_at) BETWEEN '$dataFilterPekanAwal' AND '$dataFilterPekanAkhir)' OR DATE(harga_eceran.created_at) = '$dataFilterPekanAwal' OR DATE(harga_eceran.created_at) = '$dataFilterPekanAkhir')";
     
   }
 
