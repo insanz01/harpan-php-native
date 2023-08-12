@@ -116,7 +116,7 @@
       </div>
     </div>
     <!-- /.row -->
-    <br>
+    <!-- <br>
      <div class="row">
       <div class="col">
         <form method="post" class="form-inline">
@@ -125,9 +125,9 @@
            <button type="submit" name="filter-tanggal" class="btn btn-info ml-2">Filter</button>
         </form>
        </div>
-     </div>
+     </div> -->
 
-    <div class="row mt-2">
+    <!-- <div class="row mt-2">
       <div class="col-12 mx-auto">
         <div class="card">
           <div class="card-body">
@@ -156,7 +156,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div><!-- /.container-fluid -->
 </section>
 
