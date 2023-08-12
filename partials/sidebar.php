@@ -320,19 +320,19 @@
                   </a>
                 </li> -->
                 <li class="nav-item">
-                  <a href="#!" class="nav-link">
+                  <a href="?page=eceran&action=print" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Data Harga Eceran</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#!" class="nav-link">
+                  <a href="?page=grosir&action=print" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Data Harga Grosir</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#!" class="nav-link">
+                  <a href="?page=nasional&action=print" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Data Harga Nasional</p>
                   </a>
@@ -344,31 +344,31 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#!" class="nav-link">
+                  <a href="?page=produsen&action=print" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Data Harga Produsen</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#!" class="nav-link">
+                  <a href="?page=stok&action=print" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Data Stok</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#!" class="nav-link">
+                  <a href="?page=permintaan&action=print" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Data Permintaan</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#!" class="nav-link">
+                  <a href="?page=inflasi&action=print" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Data Inflasi</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#!" class="nav-link">
+                  <a href="?page=kritik-saran&action=print" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Data Kritik Saran</p>
                   </a>

@@ -168,7 +168,7 @@
 
         include "pages/admin/permintaan/edit.php";
       } else if($action == "print") {
-        include "pages/admin/permintan/print.php";
+        include "pages/admin/permintaan/print.php";
       } else {
         include "pages/admin/permintaan/index.php";
 
