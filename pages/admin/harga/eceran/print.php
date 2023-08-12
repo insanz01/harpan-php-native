@@ -3,7 +3,6 @@
   include "controller/admin-harga-eceran.controller.php";
   include "controller/verified-get-eceran.controller.php";
 
-
   $role_id = 0;
   if(isset($_SESSION["SESS_HARPAN_ROLE_ID"])) {
     $role_id = $_SESSION["SESS_HARPAN_ROLE_ID"];
@@ -324,7 +323,6 @@
       } else {
         temp += `<td>Belum Diverifikasi</td>`
       }
-
       if(role_id == 1) {
         if(res.approved_at == null) {
           // temp += `

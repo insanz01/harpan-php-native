@@ -3,19 +3,16 @@
 
   $tipeFilter = $_POST["tipe_filter"];
   $dataFilterBulan = $_POST["data_filter_bulan"];
-  // $dataFilterPekan = $_POST["data_filter_pekan"];
-  $dataFilterPekanAwal = $_POST["data_filter_pekan_awal"];
-  $dataFilterPekanAkhir = $_POST["data_filter_pekan_akhir"];
+  $dataFilterPekan = $_POST["data_filter_pekan"];
 
   $query = "SELECT komoditas.id, komoditas.nama as komoditas, komoditas.satuan, komoditas.approved_at, harga_distributor.harga, komoditas.created_at, komoditas.updated_at FROM komoditas JOIN harga_distributor ON harga_distributor.id_komoditas = komoditas.id WHERE komoditas.deleted_at is NULL AND harga_distributor.approved_at is not NULL";
 
   if($tipeFilter == "BULANAN") {
     $query = "SELECT komoditas.id, komoditas.nama as komoditas, komoditas.satuan, komoditas.approved_at, harga_distributor.harga, komoditas.created_at, komoditas.updated_at FROM komoditas JOIN harga_distributor ON harga_distributor.id_komoditas = komoditas.id WHERE komoditas.deleted_at is NULL AND harga_distributor.approved_at is not NULL AND MONTH(harga_distributor.created_at) = $dataFilterBulan";
   } else if($tipeFilter == "MINGGUAN") {
-    // $weekNumber = date("W", strtotime($dataFilterPekan));
+    $weekNumber = date("W", strtotime($dataFilterPekan));
 
-    // $query = "SELECT komoditas.id, komoditas.nama as komoditas, komoditas.satuan, komoditas.approved_at, harga_distributor.harga, komoditas.created_at, komoditas.updated_at FROM komoditas JOIN harga_distributor ON harga_distributor.id_komoditas = komoditas.id WHERE komoditas.deleted_at is NULL AND harga_distributor.approved_at is not NULL AND WEEK(harga_distributor.created_at) = $weekNumber";
-    $query = "SELECT komoditas.id, komoditas.nama as komoditas, komoditas.satuan, komoditas.approved_at, harga_distributor.harga, komoditas.created_at, komoditas.updated_at FROM komoditas JOIN harga_distributor ON harga_distributor.id_komoditas = komoditas.id WHERE komoditas.deleted_at is NULL AND harga_distributor.approved_at is not NULL AND ((DATE(harga_distributor.created_at) BETWEEN '$dataFilterPekanAwal' AND '$dataFilterPekanAkhir)' OR DATE(harga_distributor.created_at) = '$dataFilterPekanAwal' OR DATE(harga_distributor.created_at) = '$dataFilterPekanAkhir')";
+    $query = "SELECT komoditas.id, komoditas.nama as komoditas, komoditas.satuan, komoditas.approved_at, harga_distributor.harga, komoditas.created_at, komoditas.updated_at FROM komoditas JOIN harga_distributor ON harga_distributor.id_komoditas = komoditas.id WHERE komoditas.deleted_at is NULL AND harga_distributor.approved_at is not NULL AND WEEK(harga_distributor.created_at) = $weekNumber";
   }
 
   $result = mysqli_query($connection, $query);
@@ -96,7 +93,7 @@
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" int     egrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
     -->

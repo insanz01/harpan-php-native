@@ -323,7 +323,6 @@
       } else {
         temp += `<td>Belum Diverifikasi</td>`
       }
-
       if(role_id == 1) {
         if(res.approved_at == null) {
           // temp += `

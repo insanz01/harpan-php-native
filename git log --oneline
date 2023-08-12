@@ -1,0 +1,292 @@
+[33mcommit 0d71520ce3c255a236909ca7c918abbf6b36a5ec[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Sat Aug 12 12:51:37 2023 +0700
+
+    delete cetak master data harga eceran
+
+[33mcommit 8c701ac09f0f12bdbd3ba444ee9d58f1210ee084[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Sat Aug 12 12:50:04 2023 +0700
+
+    delete cetak on master data & master data harga
+
+[33mcommit 33f8de4a78f5396a480f97f273d72a570ef7fc1b[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Sat Aug 12 12:28:46 2023 +0700
+
+    fix laporan
+
+[33mcommit 71e91396704e0047fcc6d86da65ebaf5d0c91954[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Sat Aug 12 09:22:03 2023 +0700
+
+    memperbaiki bagian laporan
+
+[33mcommit fd56bcb19bf217f3ddf5fe4c2246169f2c327947[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Fri Aug 11 21:03:00 2023 +0700
+
+    try to add filter
+
+[33mcommit f465d2325875683d5d36a07d5a8d24d9a582f6d6[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Fri Aug 11 17:03:25 2023 +0700
+
+    sample of print
+
+[33mcommit 9309ac0f44a69bc8a6971a0c04fe55fa457fb26b[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Fri Aug 11 17:02:57 2023 +0700
+
+    sample of print
+
+[33mcommit 88637f6ad7f696e3be28fe82def5d7462cf4e2a4[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Fri Aug 11 16:20:25 2023 +0700
+
+    add captcha
+
+[33mcommit 5f97060663d6554986efbb2ed2c46338d7ae33f3[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Fri Aug 11 10:20:24 2023 +0700
+
+    update captcha
+
+[33mcommit 859411ad16fc485b46e46fd55623266e6f91a970[m
+Merge: 4ba5d1d ac60be6
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Fri Aug 11 09:13:46 2023 +0700
+
+    Merge branch 'main' of https://github.com/insanz01/harpan-php-native
+
+[33mcommit 4ba5d1dad09bce0aac35effa6651561315fdb38c[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Fri Aug 11 09:13:30 2023 +0700
+
+    add captcha
+
+[33mcommit ac60be6cbcd0a1f93aa90b26a592b5308a3d88f8[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Thu Aug 10 12:07:45 2023 +0700
+
+    update filter tabel data harga
+
+[33mcommit 192a330ca7733af71793ef39a78219312ba110a5[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Tue Aug 8 20:27:34 2023 +0700
+
+    ekspor table inflasi
+
+[33mcommit cccc757a9a79bf51e58c3fdf1da8494c9292456f[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Tue Aug 8 20:12:45 2023 +0700
+
+    add db and fix some query
+
+[33mcommit f54743214524b5afa5ee1b70fab8ee09552d820e[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Tue Aug 8 19:43:15 2023 +0700
+
+    fix edit dan delete data
+
+[33mcommit 60dde8ccaa602d9c7a293d77f48980e81883f7d2[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Tue Aug 8 18:54:44 2023 +0700
+
+    tambah info unverified data
+
+[33mcommit d656053a06bdf0afb422973fc4f59565172306dd[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Tue Aug 8 18:41:46 2023 +0700
+
+    fix laporan kritik dan saran title
+
+[33mcommit 9282cae70fc64caa4b30bba827ef891f68538c00[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Tue Aug 8 18:41:11 2023 +0700
+
+    fix variable role_id
+
+[33mcommit fdeca6b3f0fe72e567f69925ced11ffa9effe678[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Tue Aug 8 17:15:54 2023 +0700
+
+    fix issue
+
+[33mcommit 13aca6aa0e7f383576d141ee1fa7cd6db8c00b66[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Tue Aug 8 17:09:31 2023 +0700
+
+    menu revisi
+
+[33mcommit 2f5676037ce0e3d813e9986447a61fd52f40909e[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Tue Aug 8 17:02:47 2023 +0700
+
+    add db
+
+[33mcommit 686370a602ce1e36c74c7a92ca82e8d24d3810a3[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Tue Aug 8 16:13:15 2023 +0700
+
+    update login page
+
+[33mcommit c91823f306b328236ba245ded834842e34530c9b[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Tue Aug 8 16:04:33 2023 +0700
+
+    add db
+
+[33mcommit e3ee06592ab1305797c73dd11fc947c0d7ae437a[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Tue Aug 8 16:03:40 2023 +0700
+
+    tombol cetak dibagusin
+
+[33mcommit a58f61f407ef3d88ec85fd339a0e639a4d8c3a42[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Tue Aug 8 15:33:20 2023 +0700
+
+    tambahkan kolom baru untuk kritik dan saran
+
+[33mcommit 232d289e4ad058cd400f9780be31a10b57bf37d6[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Fri Aug 4 20:12:38 2023 +0700
+
+    fix edit permintaan
+
+[33mcommit 9d3f251e99d52ccd64750db12f3a9400430d1478[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Fri Aug 4 20:09:42 2023 +0700
+
+    tambahkan ketersediaan
+
+[33mcommit ecc5ca24b4121dcd4fd7d869a2b1e4629a4e3535[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Fri Aug 4 20:05:38 2023 +0700
+
+    chart permintaan tampilkan perminggu
+
+[33mcommit 5be362940387f4c77e2f36a0fe3db358b6bde6cd[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Fri Aug 4 19:52:06 2023 +0700
+
+    add pagination
+
+[33mcommit 9a26b914ec006b1fb13b03159ce6be0696875d9d[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Fri Aug 4 19:30:39 2023 +0700
+
+    update bagian edit
+
+[33mcommit 324ca3cbaa44a127cc0169616a9351bbb6587d3a[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Fri Aug 4 15:51:09 2023 +0700
+
+    perbaiki satuan
+
+[33mcommit 3c32918293ce4a19eef1c18612b18052e40a46fe[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Fri Aug 4 15:20:25 2023 +0700
+
+    update query eceran
+
+[33mcommit 231da0fb73964753a8b72998fab095b8252588a6[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Fri Aug 4 14:54:08 2023 +0700
+
+    update tanggal biar bisa tersimpan
+
+[33mcommit 8cbac39ac88198c57a7101ccd5657897f95acf16[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Fri Aug 4 11:36:27 2023 +0700
+
+    update query
+
+[33mcommit f595e0efc3c306eb5b67e1fc3e0c38a0d3165d95[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Fri Aug 4 11:29:47 2023 +0700
+
+    coba tambah db nya
+
+[33mcommit 875cbd51fbb4f40afcbb72d93a1fee3022077332[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Fri Aug 4 09:08:44 2023 +0700
+
+    fix grosir table
+
+[33mcommit 60679ecef438db71354b142216ee657913381dc3[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Fri Aug 4 09:03:40 2023 +0700
+
+    perbaiki kurva
+
+[33mcommit deb66a4521f105736289a867f4164f522f5949a3[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Fri Aug 4 08:28:01 2023 +0700
+
+    update function for laporan
+
+[33mcommit 0fcbb3d0f75d2509a16893536def8009474174d4[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Fri Aug 4 08:25:59 2023 +0700
+
+    update laporan
+
+[33mcommit 2daaa04b64154bfca3ebdf19883fd5ffc6118e3d[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Fri Aug 4 07:05:50 2023 +0700
+
+    tampil perminggu pada data harga
+
+[33mcommit 5a6f7fe63ada277c315fbe94556ed91bc193c0ed[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Fri Aug 4 06:56:35 2023 +0700
+
+    perbaiki tabel permintaan
+
+[33mcommit 316b1073a23b97b27e45f7c4f6b5f6361ce803ce[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Fri Aug 4 06:18:49 2023 +0700
+
+    revisi publik harga
+
+[33mcommit 61017c0d889a2b50a98faa8652d26697415f3b3d[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Tue Aug 1 15:10:40 2023 +0700
+
+    integrasi data kurva
+
+[33mcommit e01a3c399dd40643bfb2f768163c5a7c908b4833[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Mon Jul 31 08:46:12 2023 +0700
+
+    tambahkan kurva
+
+[33mcommit 45be8bf2d139152014aee1705c5c4f322afdaea6[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Sun Jul 30 21:43:34 2023 +0700
+
+    add notifikasi
+
+[33mcommit 7bf661c7b2070857e368f6cdea010aa638d741f6[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Sun Jul 30 21:40:25 2023 +0700
+
+    perbaiki variabel
+
+[33mcommit 78f32180208fd15bcf850ea16106a0b7feae5152[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Sun Jul 30 21:22:45 2023 +0700
+
+    perbaikan part 1
+
+[33mcommit d04fbf42ee048b3ec7e154fbfee55296500d2936[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Sun Jul 30 13:03:37 2023 +0700
+
+    fix edit data
+
+[33mcommit a74aa5a8356574ec0b3cc90e7019d98b11aecf9d[m
+Author: insanz01 <insankamil002@gmail.com>
+Date:   Thu J

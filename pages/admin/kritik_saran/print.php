@@ -1,8 +1,7 @@
 <?php
   include "config/config.php";
-  include "controller/admin-harga-eceran.controller.php";
-  include "controller/get-eceran.controller.php";
-
+  include "controller/admin-harga-distributor.controller.php";
+  include "controller/verified-get-distributor.controller.php";
 
   $role_id = 0;
   if(isset($_SESSION["SESS_HARPAN_ROLE_ID"])) {
@@ -14,12 +13,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Harga Eceran</h1>
+        <h1 class="m-0">Harga Distributor</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Harga</a></li>
-          <li class="breadcrumb-item active">Eceran</li>
+          <li class="breadcrumb-item active">Distributor</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -38,26 +37,26 @@
       <div class="col-8">
         <div class="form-group">
           <?php if($role_id != 3): ?>
-            <!-- <a href="#" class="btn btn-info float-right" role="button" data-toggle="modal" data-target="#laporanModal" data-id="harga-eceran" onclick="printLaporan(this)">
+            <a href="#" class="btn btn-info float-right" role="button" data-toggle="modal" data-target="#laporanModal" data-id="harga-distributor" onclick="printLaporan(this)">
               <i class="fas fa-fw fa-print"></i>
               Cetak
-            </a> -->
+            </a>
           <?php endif; ?>
-          <!-- <a href="#" class="btn btn-info float-right" role="button" data-toggle="modal" data-target="#cetakModal">
+            <!-- <a href="#" class="btn btn-info float-right" role="button" data-toggle="modal" data-target="#cetakModal">
             <i class="fas fa-fw fa-print"></i>
             Cetak
           </a> -->
           <?php if($role_id == 2 || $role_id == 3): ?>
-            <a href="?page=eceran&action=tambah" class="btn btn-success float-right mx-2" role="button">
+            <!-- <a href="?page=distributor&action=tambah" class="btn btn-success float-right mx-2" role="button">
               <i class="fas fa-fw fa-plus"></i>
               Tambah
-            </a>
+            </a> -->
           <?php endif; ?>
           <?php if($role_id == 1): ?>
-            <a href="#!" class="btn btn-success float-right mx-2" role="button" data-toggle="modal" data-target="#verifikasiModal" onclick="selectVerifikasiData(-1)">
+            <!-- <a href="#!" class="btn btn-success float-right mx-2" role="button" data-toggle="modal" data-target="#verifikasiModal" onclick="selectVerifikasiData(-1)">
               <i class="fas fa-fw fa-plus"></i>
               VERIFIKASI
-            </a>
+            </a> -->
           <?php endif; ?>
         </div>
       </div>
@@ -102,7 +101,7 @@
                           <i class="fas fa-fw fa-trash"></i>
                           Hapus
                         </a>
-                        <a href="?page=eceran&action=edit&id=<?= $dt['id'] ?>" class="btn btn-primary float-right mx-2" role="button">
+                        <a href="?page=distributor&action=edit&id=<?= $dt['id'] ?>" class="btn btn-primary float-right mx-2" role="button">
                           <i class="fas fa-fw fa-edit"></i>
                           Ubah
                         </a>
@@ -117,8 +116,8 @@
       </div>
     </div>
     <!-- /.row -->
-    <br>
-     <div class="row">
+     <br>
+    <div class="row">
       <div class="col">
         <form method="post" class="form-inline">
            <input type="date" name="tgl_mulai" class="form-control">
@@ -126,8 +125,8 @@
            <button type="submit" name="filter-tanggal" class="btn btn-info ml-2">Filter</button>
         </form>
        </div>
-     </div>
-
+    </div>
+    
     <div class="row mt-2">
       <div class="col-12 mx-auto">
         <div class="card">
@@ -162,6 +161,32 @@
 </section>
 
 <!-- Modal -->
+<div class="modal fade" id="cetakModal" tabindex="-1" aria-labelledby="cetakModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cetakModalLabel">Cetak Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="">Laporan Periode (Tanggal Awal)</label>
+          <input type="date" class="form-control" name="cetak-tanggal-awal">
+        </div>
+        <div class="form-group">
+          <label for="">Laporan Periode (Tanggal Akhir)</label>
+          <input type="date" class="form-control" name="cetak-tanggal-akhir">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+        <button type="button" onclick="printReport()" class="btn btn-primary">Cetak</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Modal Hapus -->
 <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
@@ -210,7 +235,7 @@
   let VERIFIKASI_ID = 0;
 
   const loadData = async () => {
-    return await axios.get(`<?= $base_url ?>/api/get-eceran.api.php`).then(res => res.data);
+    return await axios.get(`<?= $base_url ?>/api/get-distributor.api.php`).then(res => res.data);
   }
 
   const printReport = async () => {
@@ -226,7 +251,7 @@
   }
 
   const doDelete = async (data) => {
-    return await axios.post(`<?= $base_url ?>/api/delete-eceran.api.php`, data, {
+    return await axios.post(`<?= $base_url ?>/api/delete-distributor.api.php`, data, {
       headers: {
         "Content-Type": "multipart/form-data"
       }
@@ -253,7 +278,7 @@
   }
 
   const doVerifikasi = async (data) => {
-    return await axios.post(`<?= $base_url ?>/api/approve-eceran.api.php`, data, {
+    return await axios.post(`<?= $base_url ?>/api/approve-distributor.api.php`, data, {
       headers: {
         "Content-Type": "multipart/form-data"
       }
@@ -290,15 +315,15 @@
                 <td>${res.satuan}</td>
                 <td>${res.harga}</td>
                 <td>${res.created_at}</td>
-
+                
             `;
-      
+
       if(res.approved_at) {
         temp += `<td>Terverifikasi</td>`;
       } else {
         temp += `<td>Belum Diverifikasi</td>`
       }
-
+      
       if(role_id == 1) {
         if(res.approved_at == null) {
           // temp += `
@@ -323,7 +348,7 @@
                     <i class="fas fa-fw fa-trash"></i>
                     Hapus
                   </a>
-                  <a href="?page=eceran&action=edit&id=${res.id}" class="btn btn-primary float-right mx-2" role="button">
+                  <a href="?page=distributor&action=edit&id=${res.id}" class="btn btn-primary float-right mx-2" role="button">
                     <i class="fas fa-fw fa-edit"></i>
                     Ubah
                   </a>

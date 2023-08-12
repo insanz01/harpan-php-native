@@ -167,6 +167,7 @@
         include "pages/admin/permintan/print.php";
       } else {
         include "pages/admin/permintaan/index.php";
+
       }
       break;
     case "inflasi":
@@ -178,7 +179,8 @@
         include "pages/admin/inflasi/edit.php";
       } else {
         include "pages/admin/inflasi/index.php";
-      }
+
+      } 
       break;
     case "aktifasi":
       include "pages/pimpinan/aktifasi/index.php";
