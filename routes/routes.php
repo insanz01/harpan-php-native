@@ -52,6 +52,8 @@
         } else {
           include "pages/admin/komoditas/index.php";
         }
+      } else if($action == "print") {
+        include "pages/admin/komoditas/print.php";
       } else {
         include "pages/admin/komoditas/index.php";
       }
@@ -67,6 +69,8 @@
         } else {
           include "pages/admin/harga/eceran/index.php";
         }
+      } else if($action == "print") {
+        include "pages/admin/harga/eceran/print.php";
       } else {
         include "pages/admin/harga/eceran/index.php";
       }
@@ -82,6 +86,8 @@
         } else {
           include "pages/admin/harga/grosir/index.php";
         }
+      } else if($action == "print") {
+        include "pages/admin/harga/grosir/print.php";
       } else {
         include "pages/admin/harga/grosir/index.php";
       }
@@ -97,6 +103,8 @@
         } else {
           include "pages/admin/harga/nasional/index.php";
         }
+      } else if($action == "print") {
+        include "pages/admin/harga/nasional/print.php";
       } else {
         include "pages/admin/harga/nasional/index.php";
       }
@@ -129,6 +137,8 @@
         } else {
           include "pages/admin/harga/produsen/index.php";
         }
+      } else if($action == "print") {
+        include "pages/admin/harga/produsen/print.php";
       } else {
         include "pages/admin/harga/produsen/index.php";
       }
@@ -140,6 +150,8 @@
         $id = $_GET["id"];
 
         include "pages/admin/stok/edit.php";
+      } else if($action == "print") {
+        include "pages/admin/stok/print.php";
       } else {
         include "pages/admin/stok/index.php";
       }
@@ -151,6 +163,8 @@
         $id = $_GET["id"];
 
         include "pages/admin/permintaan/edit.php";
+      } else if($action == "print") {
+        include "pages/admin/permintan/print.php";
       } else {
         include "pages/admin/permintaan/index.php";
       }

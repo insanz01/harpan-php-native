@@ -1,6 +1,6 @@
 <?php
   include "config/config.php";
-  include "controller/kurva.controller.php";
+  include "controller/admin-inflasi.controller.php";
 
   $role_id = 0;
   if(isset($_SESSION["SESS_HARPAN_ROLE_ID"])) {
@@ -12,12 +12,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Data Permintaan</h1>
+        <h1 class="m-0">Data Inflasi</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Data</a></li>
-          <li class="breadcrumb-item active">Permintaan</li>
+          <li class="breadcrumb-item active">Inflasi</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -37,22 +37,22 @@
         </div> -->
       </div>
       <div class="col-8">
-        <!-- <div class="form-group">
-          <a href="#" class="btn btn-info float-right" role="button" data-toggle="modal" data-target="#laporanModal" data-id="permintaan" onclick="printLaporan(this)">
-            <i class="fas fa-fw fa-print"></i>
-            Cetak
-          </a>
-        </div> -->
         <div class="form-group">
+          <?php if($role_id != 3): ?>
+            <a href="#" class="btn btn-info float-right" role="button" data-toggle="modal" data-target="#laporanModal" data-id="inflasi" onclick="printLaporan(this)">
+              <i class="fas fa-fw fa-print"></i>
+              Cetak
+            </a>
+          <?php endif; ?>
           <!-- <a href="#" class="btn btn-info float-right" role="button">
             <i class="fas fa-fw fa-print"></i>
             Cetak
           </a> -->
-          <?php if($role_id == 2): ?>
-            <a href="?page=permintaan&action=tambah" class="btn btn-success float-right mx-2" role="button">
+          <?php if($role_id == 2 || $role_id == 3): ?>
+            <!-- <a href="?page=inflasi&action=tambah" class="btn btn-success float-right mx-2" role="button">
               <i class="fas fa-fw fa-plus"></i>
               Tambah
-            </a>
+            </a> -->
           <?php endif; ?>
         </div>
       </div>
@@ -65,58 +65,48 @@
           <div class="card-body">
             <table class="table table-bordered custom-table">
               <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Nama Komoditi</th>
-                  <th>Satuan</th>
-                  <th>Jumlah Permintaan</th>
-                  <th>Tanggal</th>
-                  <?php if($role_id == 2): ?>
-                    <th>Opsi</th>
-                  <?php endif; ?>
-                </tr>
+                <th>#</th>
+                <th>Nama Komoditi</th>
+                <th>Satuan</th>
+                <th>Harga Eceran Sekarang</th>
+                <th>Harga Eceran Sebelumnya</th>
+                <th>Nilai Inflasi</th>
+                <th>Tanggal</th>
+                <?php if($role_id == 2 || $role_id == 3): ?>
+                  <!-- <th>Opsi</th> -->
+                <?php endif; ?>
               </thead>
-              <tbody id="tabel-permintaan">
-    
+              <tbody>
+                <?php $number = 1; ?>
+                <?php foreach($data as $datum): ?>
+                  <tr>
+                    <td><?= $number++ ?></td>
+                    <td><?= $datum['nama'] ?></td>
+                    <td><?= $datum['satuan'] ?></td>
+                    <td><?= $datum['harga_baru'] ?></td>
+                    <td><?= $datum['harga_lama'] ?></td>
+                    <td><?= $datum['nilai'] ?></td>
+                    <td><?= $datum['created_at'] ?></td>
+                    <?php if($role_id == 2 || $role_id == 3): ?>
+                      <!-- <td>
+                        <a href="#" class="btn btn-danger float-right" role="button" data-toggle="modal" data-target="#hapusModal" onclick="selectDeleteData(<?= $datum['id'] ?>)">
+                          <i class="fas fa-fw fa-trash"></i>
+                          Hapus
+                        </a>
+                        <a href="index.php?page=inflasi&action=edit&id=<?= $datum['id'] ?>" class="btn btn-primary float-right mx-2" role="button">
+                          <i class="fas fa-fw fa-edit"></i>
+                          Ubah
+                        </a>
+                      </td> -->
+                    <?php endif; ?>
+                  </tr>
+                <?php endforeach; ?>
               </tbody>
             </table>
-
-            <canvas id="myChart"></canvas>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- <div class="row">
-      <div class="col-12 mx-auto">
-        <div class="card">
-          <div class="card-body">
-            <table class="table table-bordered custom-table">
-              <thead>
-                <th>Komoditas</th>
-                <?php foreach($week_dates as $k): ?>
-                  <th><?= $k ?></th>
-                <?php endforeach; ?>
-              </thead>
-              <tbody>
-                  <?php foreach($week_datas as $data): ?>
-                    <tr>
-                      <td><?= $data[0] ?></td>
-                      <td><?= number_format($data[1], 0, ',', '.') ?></td>
-                      <td><?= number_format($data[2], 0, ',', '.') ?></td>
-                      <td><?= number_format($data[3], 0, ',', '.') ?></td>
-                      <td><?= number_format($data[4], 0, ',', '.') ?></td>
-                      <td><?= number_format($data[5], 0, ',', '.') ?></td>
-                      <td><?= number_format($data[6], 0, ',', '.') ?></td>
-                      <td><?= number_format($data[7], 0, ',', '.') ?></td>
-                    </tr>
-                  <?php endforeach; ?>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div> -->
     <!-- /.row -->
   </div><!-- /.container-fluid -->
 </section>
@@ -163,59 +153,12 @@
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script>
-  const getPermintaanChart = async () => {
-    return await axios.get(`<?= $base_url ?>api/chart-permintaan.api.php`).then(res => res.data);
-  }
-
-  window.addEventListener('load', async () => {
-    const result = await getPermintaanChart();
-
-    console.log("result", result);
-    let labels = [""];
-    let data = [0];
-
-    if(result.status) {
-      result.data.forEach(res => {
-        labels.push(res.nama);
-        data.push(res.total);
-      })
-    }
-
-    labels.push("");
-    data.push(0);
-    
-    const ctx = document.getElementById('myChart');
-  
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: '# of Permintaan',
-          data: data,
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
-  })
-</script>
-
 <script>
   let DELETE_ID = 0;
   let VERIFIKASI_ID = 0;
 
   const loadData = async () => {
-    return await axios.get(`<?= $base_url ?>api/admin-permintaan.api.php`).then(res => res.data);
+    return await axios.get(`<?= $base_url ?>/api/admin-inflasi.api.php`).then(res => res.data);
   }
 
   const selectDeleteData = (delete_id) => {
@@ -223,7 +166,7 @@
   }
 
   const doDelete = async (data) => {
-    return await axios.post(`<?= $base_url ?>api/delete-permintaan.api.php`, data, {
+    return await axios.post(`<?= $base_url ?>/api/delete-inflasi.api.php`, data, {
       headers: {
         "Content-Type": "multipart/form-data"
       }
@@ -250,7 +193,7 @@
   }
 
   const doVerifikasi = async (data) => {
-    return await axios.post(`<?= $base_url ?>api/approve-permintaan.api.php`, data, {
+    return await axios.post(`<?= $base_url ?>/api/approve-inflasi.api.php`, data, {
       headers: {
         "Content-Type": "multipart/form-data"
       }
@@ -273,7 +216,7 @@
   }
 
   const renderTable = (data) => {
-    const target = document.getElementById('tabel-permintaan');
+    const target = document.getElementById('tabel-inflasi');
 
     let temp = ``;
 
@@ -285,7 +228,9 @@
                 <td>${index + 1}</td>
                 <td>${res.nama}</td>
                 <td>${res.satuan}</td>
-                <td>${res.jumlah} ${res.satuan}</td>
+                <td>${res.harga_baru}</td>
+                <td>${res.harga_lama}</td>
+                <td>${res.nominal}</td>
                 <td>${res.created_at}</td>
                 
             `;
@@ -316,7 +261,7 @@
                     <i class="fas fa-fw fa-trash"></i>
                     Hapus
                   </a>
-                  <a href="index.php?page=permintaan&action=edit&id=${res.id}" class="btn btn-primary float-right mx-2" role="button">
+                  <a href="index.php?page=inflasi&action=edit&id=${res.id}" class="btn btn-primary float-right mx-2" role="button">
                     <i class="fas fa-fw fa-edit"></i>
                     Ubah
                   </a>
@@ -325,11 +270,15 @@
       }
     });
 
+    console.log(temp);
+
     target.innerHTML = temp;
   }
 
   const showData = async () => {
     const result = await loadData();
+
+    console.log(result.data);
 
     if(result.status) {
       renderTable(result.data);

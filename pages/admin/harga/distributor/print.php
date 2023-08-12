@@ -76,7 +76,7 @@
                   <th>Harga</th>
                   <th>Tanggal</th>
                   <th>Status</th>
-                  <th class="text-right">Opsi</th>
+                  <!-- <th class="text-right">Opsi</th> -->
                 </tr>
               </thead>
               <tbody>
@@ -95,7 +95,7 @@
                         Belum Diverifikasi
                       <?php endif; ?>
                     </td>
-                    <td>
+                    <!-- <td>
                       <?php if($role_id != 1): ?>
                         <a href="#" class="btn btn-danger float-right" role="button" data-toggle="modal" data-target="#hapusModal" onclick="selectDeleteData(<?= $dt['id'] ?>)">
                           <i class="fas fa-fw fa-trash"></i>
@@ -106,7 +106,7 @@
                           Ubah
                         </a>
                       <?php endif; ?>
-                    </td>
+                    </td> -->
                   </tr>
                 <?php endforeach; ?>
               </tbody>

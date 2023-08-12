@@ -37,22 +37,22 @@
         </div> -->
       </div>
       <div class="col-8">
-        <!-- <div class="form-group">
+        <div class="form-group">
           <a href="#" class="btn btn-info float-right" role="button" data-toggle="modal" data-target="#laporanModal" data-id="permintaan" onclick="printLaporan(this)">
             <i class="fas fa-fw fa-print"></i>
             Cetak
           </a>
-        </div> -->
+        </div>
         <div class="form-group">
           <!-- <a href="#" class="btn btn-info float-right" role="button">
             <i class="fas fa-fw fa-print"></i>
             Cetak
           </a> -->
           <?php if($role_id == 2): ?>
-            <a href="?page=permintaan&action=tambah" class="btn btn-success float-right mx-2" role="button">
+            <!-- <a href="?page=permintaan&action=tambah" class="btn btn-success float-right mx-2" role="button">
               <i class="fas fa-fw fa-plus"></i>
               Tambah
-            </a>
+            </a> -->
           <?php endif; ?>
         </div>
       </div>
@@ -72,7 +72,7 @@
                   <th>Jumlah Permintaan</th>
                   <th>Tanggal</th>
                   <?php if($role_id == 2): ?>
-                    <th>Opsi</th>
+                    <!-- <th>Opsi</th> -->
                   <?php endif; ?>
                 </tr>
               </thead>
@@ -310,17 +310,19 @@
                 </tr>`;
         }
       } else {
+        // temp += `
+        //       <td>
+        //           <a href="#" class="btn btn-danger float-right" role="button" data-toggle="modal" data-target="#hapusModal" onclick="selectDeleteData(${res.id})">
+        //             <i class="fas fa-fw fa-trash"></i>
+        //             Hapus
+        //           </a>
+        //           <a href="index.php?page=permintaan&action=edit&id=${res.id}" class="btn btn-primary float-right mx-2" role="button">
+        //             <i class="fas fa-fw fa-edit"></i>
+        //             Ubah
+        //           </a>
+        //         </td>
+        //       </tr>`;
         temp += `
-              <td>
-                  <a href="#" class="btn btn-danger float-right" role="button" data-toggle="modal" data-target="#hapusModal" onclick="selectDeleteData(${res.id})">
-                    <i class="fas fa-fw fa-trash"></i>
-                    Hapus
-                  </a>
-                  <a href="index.php?page=permintaan&action=edit&id=${res.id}" class="btn btn-primary float-right mx-2" role="button">
-                    <i class="fas fa-fw fa-edit"></i>
-                    Ubah
-                  </a>
-                </td>
               </tr>`;
       }
     });

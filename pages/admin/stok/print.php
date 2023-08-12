@@ -1,6 +1,7 @@
 <?php
   include "config/config.php";
-  include "controller/kurva.controller.php";
+  include "controller/admin-stok.controller.php";
+
 
   $role_id = 0;
   if(isset($_SESSION["SESS_HARPAN_ROLE_ID"])) {
@@ -12,12 +13,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Data Permintaan</h1>
+        <h1 class="m-0">Data Stok</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="#">Data</a></li>
-          <li class="breadcrumb-item active">Permintaan</li>
+          <li class="breadcrumb-item"><a href="#">Komoditas</a></li>
+          <li class="breadcrumb-item active">Ketersediaan</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -37,22 +38,22 @@
         </div> -->
       </div>
       <div class="col-8">
-        <!-- <div class="form-group">
-          <a href="#" class="btn btn-info float-right" role="button" data-toggle="modal" data-target="#laporanModal" data-id="permintaan" onclick="printLaporan(this)">
+        <div class="form-group">
+          <a href="#" class="btn btn-info float-right" role="button" data-toggle="modal" data-target="#laporanModal" data-id="stok" onclick="printLaporan(this)">
             <i class="fas fa-fw fa-print"></i>
             Cetak
           </a>
-        </div> -->
+        </div>
         <div class="form-group">
           <!-- <a href="#" class="btn btn-info float-right" role="button">
             <i class="fas fa-fw fa-print"></i>
             Cetak
           </a> -->
           <?php if($role_id == 2): ?>
-            <a href="?page=permintaan&action=tambah" class="btn btn-success float-right mx-2" role="button">
+            <!-- <a href="?page=stok&action=tambah" class="btn btn-success float-right mx-2" role="button">
               <i class="fas fa-fw fa-plus"></i>
               Tambah
-            </a>
+            </a> -->
           <?php endif; ?>
         </div>
       </div>
@@ -69,25 +70,34 @@
                   <th>#</th>
                   <th>Nama Komoditi</th>
                   <th>Satuan</th>
-                  <th>Jumlah Permintaan</th>
+                  <th>Stok</th>
                   <th>Tanggal</th>
                   <?php if($role_id == 2): ?>
-                    <th>Opsi</th>
+                    <!-- <th>Opsi</th> -->
                   <?php endif; ?>
                 </tr>
               </thead>
-              <tbody id="tabel-permintaan">
+              <tbody id="tabel-stok">
     
               </tbody>
             </table>
-
-            <canvas id="myChart"></canvas>
           </div>
         </div>
       </div>
     </div>
+    <!-- /.row -->
+    <br>
+     <div class="row">
+      <div class="col">
+        <form method="post" class="form-inline">
+           <input type="date" name="tgl_mulai" class="form-control">
+           <input type="date" name="tgl_selesai" class="form-control ml-2">
+           <button type="submit" name="filter-tanggal" class="btn btn-info ml-2">Filter</button>
+        </form>
+       </div>
+     </div>
 
-    <!-- <div class="row">
+    <div class="row mt-2">
       <div class="col-12 mx-auto">
         <div class="card">
           <div class="card-body">
@@ -116,8 +126,7 @@
           </div>
         </div>
       </div>
-    </div> -->
-    <!-- /.row -->
+    </div>
   </div><!-- /.container-fluid -->
 </section>
 
@@ -163,59 +172,12 @@
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script>
-  const getPermintaanChart = async () => {
-    return await axios.get(`<?= $base_url ?>api/chart-permintaan.api.php`).then(res => res.data);
-  }
-
-  window.addEventListener('load', async () => {
-    const result = await getPermintaanChart();
-
-    console.log("result", result);
-    let labels = [""];
-    let data = [0];
-
-    if(result.status) {
-      result.data.forEach(res => {
-        labels.push(res.nama);
-        data.push(res.total);
-      })
-    }
-
-    labels.push("");
-    data.push(0);
-    
-    const ctx = document.getElementById('myChart');
-  
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: '# of Permintaan',
-          data: data,
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
-  })
-</script>
-
 <script>
   let DELETE_ID = 0;
   let VERIFIKASI_ID = 0;
 
   const loadData = async () => {
-    return await axios.get(`<?= $base_url ?>api/admin-permintaan.api.php`).then(res => res.data);
+    return await axios.get(`<?= $base_url ?>/api/get-stok.api.php`).then(res => res.data);
   }
 
   const selectDeleteData = (delete_id) => {
@@ -223,7 +185,7 @@
   }
 
   const doDelete = async (data) => {
-    return await axios.post(`<?= $base_url ?>api/delete-permintaan.api.php`, data, {
+    return await axios.post(`<?= $base_url ?>/api/delete-stok.api.php`, data, {
       headers: {
         "Content-Type": "multipart/form-data"
       }
@@ -250,7 +212,7 @@
   }
 
   const doVerifikasi = async (data) => {
-    return await axios.post(`<?= $base_url ?>api/approve-permintaan.api.php`, data, {
+    return await axios.post(`<?= $base_url ?>/api/approve-stok.api.php`, data, {
       headers: {
         "Content-Type": "multipart/form-data"
       }
@@ -273,7 +235,7 @@
   }
 
   const renderTable = (data) => {
-    const target = document.getElementById('tabel-permintaan');
+    const target = document.getElementById('tabel-stok');
 
     let temp = ``;
 
@@ -285,7 +247,7 @@
                 <td>${index + 1}</td>
                 <td>${res.nama}</td>
                 <td>${res.satuan}</td>
-                <td>${res.jumlah} ${res.satuan}</td>
+                <td>${res.stok}</td>
                 <td>${res.created_at}</td>
                 
             `;
@@ -310,17 +272,19 @@
                 </tr>`;
         }
       } else {
+        // temp += `
+        //         <td>
+        //           <a href="#" class="btn btn-danger float-right" role="button" data-toggle="modal" data-target="#hapusModal" onclick="selectDeleteData(${res.id})">
+        //             <i class="fas fa-fw fa-trash"></i>
+        //             Hapus
+        //           </a>
+        //           <a href="index.php?page=stok&action=edit&id=${res.id}" class="btn btn-primary float-right mx-2" role="button">
+        //             <i class="fas fa-fw fa-edit"></i>
+        //             Ubah
+        //           </a>
+        //         </td>
+        //       </tr>`;
         temp += `
-              <td>
-                  <a href="#" class="btn btn-danger float-right" role="button" data-toggle="modal" data-target="#hapusModal" onclick="selectDeleteData(${res.id})">
-                    <i class="fas fa-fw fa-trash"></i>
-                    Hapus
-                  </a>
-                  <a href="index.php?page=permintaan&action=edit&id=${res.id}" class="btn btn-primary float-right mx-2" role="button">
-                    <i class="fas fa-fw fa-edit"></i>
-                    Ubah
-                  </a>
-                </td>
               </tr>`;
       }
     });

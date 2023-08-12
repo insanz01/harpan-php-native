@@ -1,6 +1,7 @@
 <?php
   include "config/config.php";
-  include "controller/kurva.controller.php";
+  include "controller/admin-harga-nasional.controller.php";
+  include "controller/verified-get-nasional.controller.php";
 
   $role_id = 0;
   if(isset($_SESSION["SESS_HARPAN_ROLE_ID"])) {
@@ -12,12 +13,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Data Permintaan</h1>
+        <h1 class="m-0">Harga Nasional</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="#">Data</a></li>
-          <li class="breadcrumb-item active">Permintaan</li>
+          <li class="breadcrumb-item"><a href="#">Harga</a></li>
+          <li class="breadcrumb-item active">Nasional</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -31,28 +32,31 @@
 
     <div class="row py-4">
       <div class="col-4">
-        <!-- <div class="form-group">
-          <label for="laporan-periode">Laporan Periode</label>
-          <input type="date" class="form-control">
-        </div> -->
+
       </div>
       <div class="col-8">
-        <!-- <div class="form-group">
-          <a href="#" class="btn btn-info float-right" role="button" data-toggle="modal" data-target="#laporanModal" data-id="permintaan" onclick="printLaporan(this)">
+        <div class="form-group">
+        <?php if($role_id != 3): ?>
+          <a href="#" class="btn btn-info float-right" role="button" data-toggle="modal" data-target="#laporanModal" data-id="harga-nasional" onclick="printLaporan(this)">
             <i class="fas fa-fw fa-print"></i>
             Cetak
           </a>
-        </div> -->
-        <div class="form-group">
-          <!-- <a href="#" class="btn btn-info float-right" role="button">
+        <?php endif; ?>
+          <!-- <a href="#" class="btn btn-info float-right" role="button" data-toggle="modal" data-target="#cetakModal">
             <i class="fas fa-fw fa-print"></i>
             Cetak
           </a> -->
-          <?php if($role_id == 2): ?>
-            <a href="?page=permintaan&action=tambah" class="btn btn-success float-right mx-2" role="button">
+          <?php if($role_id == 2 || $role_id == 3): ?>
+            <!-- <a href="?page=nasional&action=tambah" class="btn btn-success float-right mx-2" role="button">
               <i class="fas fa-fw fa-plus"></i>
               Tambah
-            </a>
+            </a> -->
+          <?php endif; ?>
+          <?php if($role_id == 1): ?>
+            <!-- <a href="#!" class="btn btn-success float-right mx-2" role="button" data-toggle="modal" data-target="#verifikasiModal" onclick="selectVerifikasiData(-1)">
+              <i class="fas fa-fw fa-plus"></i>
+              VERIFIKASI
+            </a> -->
           <?php endif; ?>
         </div>
       </div>
@@ -69,25 +73,61 @@
                   <th>#</th>
                   <th>Nama Komoditi</th>
                   <th>Satuan</th>
-                  <th>Jumlah Permintaan</th>
+                  <th>Harga</th>
                   <th>Tanggal</th>
-                  <?php if($role_id == 2): ?>
-                    <th>Opsi</th>
-                  <?php endif; ?>
+                  <th>Status</th>
+                  <!-- <th class="text-right">Opsi</th> -->
                 </tr>
               </thead>
-              <tbody id="tabel-permintaan">
-    
+              <tbody>
+                <?php $number = 1; ?>
+                <?php foreach($data as $dt): ?>
+                  <tr>
+                    <td><?= $number++ ?></td>
+                    <td><?= $dt['nama'] ?></td>
+                    <td><?= $dt['satuan'] ?></td>
+                    <td><?= $dt['harga'] ?></td>
+                    <td><?= $dt['created_at'] ?></td>
+                    <td>
+                      <?php if($dt['approved_at']): ?>
+                        Terverifikasi
+                      <?php else: ?>
+                        Belum Diverifikasi
+                      <?php endif; ?>
+                    </td>
+                    <!-- <td>
+                      <?php if($role_id != 1): ?>
+                        <a href="#" class="btn btn-danger float-right" role="button" data-toggle="modal" data-target="#hapusModal" onclick="selectDeleteData(<?= $dt['id'] ?>)">
+                          <i class="fas fa-fw fa-trash"></i>
+                          Hapus
+                        </a>
+                        <a href="?page=nasional&action=edit&id=<?= $dt['id'] ?>" class="btn btn-primary float-right mx-2" role="button">
+                          <i class="fas fa-fw fa-edit"></i>
+                          Ubah
+                        </a>
+                      <?php endif; ?>
+                    </td> -->
+                  </tr>
+                <?php endforeach; ?>
               </tbody>
             </table>
-
-            <canvas id="myChart"></canvas>
           </div>
         </div>
       </div>
     </div>
+    <!-- /.row -->
+    <br>
+     <div class="row">
+      <div class="col">
+        <form method="post" class="form-inline">
+           <input type="date" name="tgl_mulai" class="form-control">
+           <input type="date" name="tgl_selesai" class="form-control ml-2">
+           <button type="submit" name="filter-tanggal" class="btn btn-info ml-2">Filter</button>
+        </form>
+       </div>
+     </div>
 
-    <!-- <div class="row">
+    <div class="row mt-2">
       <div class="col-12 mx-auto">
         <div class="card">
           <div class="card-body">
@@ -116,10 +156,37 @@
           </div>
         </div>
       </div>
-    </div> -->
-    <!-- /.row -->
+    </div>
   </div><!-- /.container-fluid -->
 </section>
+
+<!-- Modal -->
+<div class="modal fade" id="cetakModal" tabindex="-1" aria-labelledby="cetakModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cetakModalLabel">Cetak Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="">Laporan Periode (Tanggal Awal)</label>
+          <input type="date" class="form-control" name="cetak-tanggal-awal">
+        </div>
+        <div class="form-group">
+          <label for="">Laporan Periode (Tanggal Akhir)</label>
+          <input type="date" class="form-control" name="cetak-tanggal-akhir">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+        <button type="button" onclick="printReport()" class="btn btn-primary">Cetak</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Modal Hapus -->
 <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
@@ -163,59 +230,20 @@
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script>
-  const getPermintaanChart = async () => {
-    return await axios.get(`<?= $base_url ?>api/chart-permintaan.api.php`).then(res => res.data);
-  }
-
-  window.addEventListener('load', async () => {
-    const result = await getPermintaanChart();
-
-    console.log("result", result);
-    let labels = [""];
-    let data = [0];
-
-    if(result.status) {
-      result.data.forEach(res => {
-        labels.push(res.nama);
-        data.push(res.total);
-      })
-    }
-
-    labels.push("");
-    data.push(0);
-    
-    const ctx = document.getElementById('myChart');
-  
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: '# of Permintaan',
-          data: data,
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
-  })
-</script>
-
 <script>
   let DELETE_ID = 0;
   let VERIFIKASI_ID = 0;
 
   const loadData = async () => {
-    return await axios.get(`<?= $base_url ?>api/admin-permintaan.api.php`).then(res => res.data);
+    return await axios.get(`<?= $base_url ?>/api/get-nasional.api.php`).then(res => res.data);
+  }
+
+  const printReport = async () => {
+    const periodeAwal = document.getElementById("cetak-tanggal-awal").value;
+    const periodeAkhir = document.getElementById("cetak-tanggal-akhir").value;
+
+    console.log(periodeAwal);
+    console.log(periodeAkhir);
   }
 
   const selectDeleteData = (delete_id) => {
@@ -223,7 +251,7 @@
   }
 
   const doDelete = async (data) => {
-    return await axios.post(`<?= $base_url ?>api/delete-permintaan.api.php`, data, {
+    return await axios.post(`<?= $base_url ?>/api/delete-nasional.api.php`, data, {
       headers: {
         "Content-Type": "multipart/form-data"
       }
@@ -250,7 +278,7 @@
   }
 
   const doVerifikasi = async (data) => {
-    return await axios.post(`<?= $base_url ?>api/approve-permintaan.api.php`, data, {
+    return await axios.post(`<?= $base_url ?>/api/approve-nasional.api.php`, data, {
       headers: {
         "Content-Type": "multipart/form-data"
       }
@@ -273,7 +301,7 @@
   }
 
   const renderTable = (data) => {
-    const target = document.getElementById('tabel-permintaan');
+    const target = document.getElementById('tabel-harga');
 
     let temp = ``;
 
@@ -285,10 +313,16 @@
                 <td>${index + 1}</td>
                 <td>${res.nama}</td>
                 <td>${res.satuan}</td>
-                <td>${res.jumlah} ${res.satuan}</td>
+                <td>${res.harga}</td>
                 <td>${res.created_at}</td>
                 
             `;
+
+      if(res.approved_at) {
+        temp += `<td>Terverifikasi</td>`;
+      } else {
+        temp += `<td>Belum Diverifikasi</td>`
+      }
 
       if(role_id == 1) {
         if(res.approved_at == null) {
@@ -300,8 +334,6 @@
           //           </a>
           //         </td>
           //       </tr>`;
-          temp += `
-                </tr>`;
         } else {
           temp += `
                   <td>
@@ -311,12 +343,12 @@
         }
       } else {
         temp += `
-              <td>
+                <td>
                   <a href="#" class="btn btn-danger float-right" role="button" data-toggle="modal" data-target="#hapusModal" onclick="selectDeleteData(${res.id})">
                     <i class="fas fa-fw fa-trash"></i>
                     Hapus
                   </a>
-                  <a href="index.php?page=permintaan&action=edit&id=${res.id}" class="btn btn-primary float-right mx-2" role="button">
+                  <a href="?page=nasional&action=edit&id=${res.id}" class="btn btn-primary float-right mx-2" role="button">
                     <i class="fas fa-fw fa-edit"></i>
                     Ubah
                   </a>
