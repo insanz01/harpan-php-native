@@ -85,7 +85,7 @@
           <textarea name="kritik_saran" id="kritik_saran" class="form-control" cols="30" rows="10"></textarea>
         </div>
         <div class="form-group">
-          <img src="./generate.php" alt="captcha">
+          <img src="<?= $base_url ?>helper/generate.php" alt="captcha">
         </div>
         <div class="form-group">
           <input type="text" class="form-control" name="captcha" id="captcha" maxlength="5" placeholder="kode captcha">
