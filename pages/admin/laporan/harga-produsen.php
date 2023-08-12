@@ -15,7 +15,7 @@
     // $weekNumber = date("W", strtotime($dataFilterPekan));
 
     // $query = "SELECT harga_produsen.id, harga_produsen.harga, komoditas.id as id_komoditas, komoditas.nama as komoditas, komoditas.satuan, harga_produsen.approved_at, harga_produsen.created_at, harga_produsen.updated_at FROM harga_produsen JOIN komoditas ON harga_produsen.id_komoditas = komoditas.id WHERE harga_produsen.deleted_at is NULL AND harga_produsen.approved_at is not NULL AND WEEK(harga_produsen.created_at) = $weekNumber";
-    $query = "SELECT harga_produsen.id, harga_produsen.harga, komoditas.id as id_komoditas, komoditas.nama as komoditas, komoditas.satuan, harga_produsen.approved_at, harga_produsen.created_at, harga_produsen.updated_at FROM harga_produsen JOIN komoditas ON harga_produsen.id_komoditas = komoditas.id WHERE harga_produsen.deleted_at is NULL AND harga_produsen.approved_at is not NULL AND ((DATE(harga_produsen.created_at) BETWEEN '$dataFilterPekanAwal' AND '$dataFilterPekanAkhir)' OR DATE(harga_produsen.created_at) = '$dataFilterPekanAwal' OR DATE(harga_produsen.created_at) = '$dataFilterPekanAkhir')";
+    $query = "SELECT harga_produsen.id, harga_produsen.harga, komoditas.id as id_komoditas, komoditas.nama as komoditas, komoditas.satuan, harga_produsen.approved_at, harga_produsen.created_at, harga_produsen.updated_at FROM harga_produsen JOIN komoditas ON harga_produsen.id_komoditas = komoditas.id WHERE harga_produsen.deleted_at is NULL AND harga_produsen.approved_at is not NULL AND ((DATE(harga_produsen.created_at) BETWEEN '$dataFilterPekanAwal' AND '$dataFilterPekanAkhir') OR DATE(harga_produsen.created_at) = '$dataFilterPekanAwal' OR DATE(harga_produsen.created_at) = '$dataFilterPekanAkhir')";
   }
 
   $result = mysqli_query($connection, $query);
