@@ -134,7 +134,12 @@
           include "pages/admin/harga/produsen/edit.php";
         } else {
           include "pages/admin/harga/produsen/index.php";
-        }}
+        }
+      } else if($action == "print") {
+        include "pages/admin/harga/produsen/print.php";
+      } else {
+        include "pages/admin/harga/produsen/index.php";
+      }
       break;
     case "stok":
       if($action == "tambah") {
