@@ -39,10 +39,7 @@
       <div class="col-8">
         <div class="form-group">
           <?php if($role_id != 3): ?>
-            <a href="#" class="btn btn-info float-right" role="button" data-toggle="modal" data-target="#laporanModal" data-id="inflasi" onclick="printLaporan(this)">
-              <i class="fas fa-fw fa-print"></i>
-              Cetak
-            </a>
+            
           <?php endif; ?>
           <!-- <a href="#" class="btn btn-info float-right" role="button">
             <i class="fas fa-fw fa-print"></i>
