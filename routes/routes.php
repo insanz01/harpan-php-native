@@ -39,7 +39,11 @@
       include "pages/public/agenda.php";
       break;
     case "kritik-saran":
-      include "pages/admin/kritik_saran/index.php";
+      if($action == "print") {
+        include "pages/admin/kritik_saran/print.php";
+      } else {
+        include "pages/admin/kritik_saran/index.php";
+      }
       break;
     case "komoditas":
       if($action == "tambah") {
@@ -177,9 +181,10 @@
         $id = $_GET["id"];
 
         include "pages/admin/inflasi/edit.php";
+      } else if($action == "print") {
+        include "pages/admin/inflasi/print.php";
       } else {
         include "pages/admin/inflasi/index.php";
-
       } 
       break;
     case "aktifasi":
