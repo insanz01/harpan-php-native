@@ -7,6 +7,13 @@ if(isset($_POST["filter_tanggal"])) {
   $filter_tanggal = $_POST["filter_tanggal"];
 }
 
+$filter_tgl_mulai = null;
+$filter_tgl_selesai = null;
+if(isset($_POST["tgl_mulai"]) && isset($_POST["tgl_selesai"])) {
+  $filter_tgl_mulai = $_POST["tgl_mulai"];
+  $filter_tgl_selesai = $_POST["tgl_selesai"];
+}
+
 $week_dates = array();
 
 $currentWeekQuery = "SELECT WEEK(NOW()) as week";
@@ -27,6 +34,11 @@ $dayOfWeek = date("N", strtotime($currentDate)); // 1 (Senin) hingga 7 (Minggu)
 
 $firstDateOfWeek = date("Y-m-d", strtotime("-" . ($dayOfWeek - 1) . " days", strtotime($currentDate)));
 $lastDateOfWeek = date("Y-m-d", strtotime("+" . (7 - $dayOfWeek) . " days", strtotime($currentDate)));
+
+if($filter_tgl_mulai && $filter_tgl_selesai) {
+  $firstDateOfWeek = $filter_tgl_mulai;
+  $lastDateOfWeek = $filter_tgl_selesai;
+}
 
 $start_date = strtotime($firstDateOfWeek);
 $end_date = strtotime($lastDateOfWeek);

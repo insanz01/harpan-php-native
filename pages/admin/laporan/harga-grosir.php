@@ -3,16 +3,19 @@
 
   $tipeFilter = $_POST["tipe_filter"];
   $dataFilterBulan = $_POST["data_filter_bulan"];
-  $dataFilterPekan = $_POST["data_filter_pekan"];
+  // $dataFilterPekan = $_POST["data_filter_pekan"];
+  $dataFilterPekanAwal = $_POST["data_filter_pekan_awal"];
+  $dataFilterPekanAkhir = $_POST["data_filter_pekan_akhir"];
 
   $query = "SELECT harga_grosir.id, harga_grosir.harga, komoditas.id as id_komoditas, komoditas.nama as komoditas, komoditas.satuan, harga_grosir.approved_at, harga_grosir.created_at, harga_grosir.updated_at FROM harga_grosir JOIN komoditas ON harga_grosir.id_komoditas = komoditas.id WHERE harga_grosir.deleted_at is NULL AND harga_grosir.approved_at is not NULL";
 
   if($tipeFilter == "BULANAN") {
     $query = "SELECT harga_grosir.id, harga_grosir.harga, komoditas.id as id_komoditas, komoditas.nama as komoditas, komoditas.satuan, harga_grosir.approved_at, harga_grosir.created_at, harga_grosir.updated_at FROM harga_grosir JOIN komoditas ON harga_grosir.id_komoditas = komoditas.id WHERE harga_grosir.deleted_at is NULL AND harga_grosir.approved_at is not NULL AND MONTH(harga_grosir.created_at) = $dataFilterBulan";
   } else if($tipeFilter == "MINGGUAN") {
-    $weekNumber = date("W", strtotime($dataFilterPekan));
+    // $weekNumber = date("W", strtotime($dataFilterPekan));
 
-    $query = "SELECT harga_grosir.id, harga_grosir.harga, komoditas.id as id_komoditas, komoditas.nama as komoditas, komoditas.satuan, harga_grosir.approved_at, harga_grosir.created_at, harga_grosir.updated_at FROM harga_grosir JOIN komoditas ON harga_grosir.id_komoditas = komoditas.id WHERE harga_grosir.deleted_at is NULL AND harga_grosir.approved_at is not NULL AND WEEK(harga_grosir.created_at) = $weekNumber";
+    // $query = "SELECT harga_grosir.id, harga_grosir.harga, komoditas.id as id_komoditas, komoditas.nama as komoditas, komoditas.satuan, harga_grosir.approved_at, harga_grosir.created_at, harga_grosir.updated_at FROM harga_grosir JOIN komoditas ON harga_grosir.id_komoditas = komoditas.id WHERE harga_grosir.deleted_at is NULL AND harga_grosir.approved_at is not NULL AND WEEK(harga_grosir.created_at) = $weekNumber";
+    $query = "SELECT harga_grosir.id, harga_grosir.harga, komoditas.id as id_komoditas, komoditas.nama as komoditas, komoditas.satuan, harga_grosir.approved_at, harga_grosir.created_at, harga_grosir.updated_at FROM harga_grosir JOIN komoditas ON harga_grosir.id_komoditas = komoditas.id WHERE harga_grosir.deleted_at is NULL AND harga_grosir.approved_at is not NULL AND ((DATE(harga_grosir.created_at) BETWEEN '$dataFilterPekanAwal' AND '$dataFilterPekanAkhir)' OR DATE(harga_grosir.created_at) = '$dataFilterPekanAwal' OR DATE(harga_grosir.created_at) = '$dataFilterPekanAkhir')";
   }
 
   $result = mysqli_query($connection, $query);

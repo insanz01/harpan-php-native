@@ -3,16 +3,19 @@
 
   $tipeFilter = $_POST["tipe_filter"];
   $dataFilterBulan = $_POST["data_filter_bulan"];
-  $dataFilterPekan = $_POST["data_filter_pekan"];
+  // $dataFilterPekan = $_POST["data_filter_pekan"];
+  $dataFilterPekanAwal = $_POST["data_filter_pekan_awal"];
+  $dataFilterPekanAkhir = $_POST["data_filter_pekan_akhir"];
 
   $query = "SELECT * FROM kritik_saran";
 
   if($tipeFilter == "BULANAN") {
     $query = "SELECT * FROM kritik_saran WHERE MONTH(kritik_saran.created_at) = $dataFilterBulan";
   } else if($tipeFilter == "MINGGUAN") {
-    $weekNumber = date("W", strtotime($dataFilterPekan));
+    // $weekNumber = date("W", strtotime($dataFilterPekan));
 
-    $query = "SELECT * FROM kritik_saran WHERE WEEK(kritik_saran.created_at) = $weekNumber";
+    // $query = "SELECT * FROM kritik_saran WHERE WEEK(kritik_saran.created_at) = $weekNumber";
+    $query = "SELECT * FROM kritik_saran WHERE ((DATE(kritik_saran.created_at) BETWEEN '$dataFilterPekanAwal' AND '$dataFilterPekanAkhir)' OR DATE(kritik_saran.created_at) = '$dataFilterPekanAwal' OR DATE(kritik_saran.created_at) = '$dataFilterPekanAkhir')";
   }
 
   $result = mysqli_query($connection, $query);
