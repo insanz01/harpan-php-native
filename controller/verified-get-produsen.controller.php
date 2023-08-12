@@ -8,7 +8,7 @@ $query = "SELECT harga_produsen.id, harga_produsen.harga, komoditas.satuan, komo
 if(isset($_GET["id"])) {
   $id = $_GET["id"];
 
-  $query = "SELECT harga_produsen.id, harga_produsen.harga, komoditas.satuan, komoditas.id as id_komoditas, komoditas.nama as komoditas, harga_produsen.approved_at, harga_produsen.created_at,harga_produsen.updated_at FROM harga_produsen JOIN komoditas ON harga_produsen.id_komoditas = komoditas.id WHERE hargaharga_produsen_nasional.deleted_at is NULL AND harga_produsen.approved_at is not NULL AND harga_produsen.id = $id ORDER BY harga_produsen.created_at DESC";
+  $query = "SELECT harga_produsen.id, harga_produsen.harga, komoditas.satuan, komoditas.id as id_komoditas, komoditas.nama as komoditas, harga_produsen.approved_at, harga_produsen.created_at,harga_produsen.updated_at FROM harga_produsen JOIN komoditas ON harga_produsen.id_komoditas = komoditas.id WHERE hargan_produsen.deleted_at is NULL AND harga_produsen.approved_at is not NULL AND harga_produsen.id = $id ORDER BY harga_produsen.created_at DESC";
 }
 
 $result = mysqli_query($connection, $query);

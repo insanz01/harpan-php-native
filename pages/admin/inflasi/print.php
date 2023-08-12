@@ -72,27 +72,23 @@
                   <th>#</th>
                   <th>Nama Komoditi</th>
                   <th>Satuan</th>
-                  <th>Harga</th>
+                  <th>Harga Eceran Sekarang</th>
+                  <th>Harga Eceran Sebelumnya</th>
+                  <th>Nilai Inflasi</th>
                   <th>Tanggal</th>
-                  <th>Status</th>
                 </tr>
               </thead>
               <tbody>
                 <?php $number = 1; ?>
                 <?php foreach($data as $dt): ?>
                   <tr>
-                    <td><?= $number++ ?></td>
-                    <td><?= $dt['nama'] ?></td>
-                    <td><?= $dt['satuan'] ?></td>
-                    <td><?= $dt['harga'] ?></td>
-                    <td><?= $dt['created_at'] ?></td>
-                    <td>
-                      <?php if($dt['approved_at']): ?>
-                        Terverifikasi
-                      <?php else: ?>
-                        Belum Diverifikasi
-                      <?php endif; ?>
-                    </td>
+                  <td><?= $number++ ?></td>
+                    <td><?= $datum['nama'] ?></td>
+                    <td><?= $datum['satuan'] ?></td>
+                    <td><?= $datum['harga_baru'] ?></td>
+                    <td><?= $datum['harga_lama'] ?></td>
+                    <td><?= $datum['nilai'] ?></td>
+                    <td><?= $datum['created_at'] ?></td>
                   </tr>
                 <?php endforeach; ?>
               </tbody>
@@ -111,37 +107,6 @@
            <button type="submit" name="filter-tanggal" class="btn btn-info ml-2">Filter</button>
         </form>
        </div>
-    </div>
-    
-    <div class="row mt-2">
-      <div class="col-12 mx-auto">
-        <div class="card">
-          <div class="card-body">
-            <table class="table table-bordered custom-table">
-              <thead>
-                <th>Komoditas</th>
-                <?php foreach($week_dates as $k): ?>
-                  <th><?= $k ?></th>
-                <?php endforeach; ?>
-              </thead>
-              <tbody>
-                  <?php foreach($week_datas as $data): ?>
-                    <tr>
-                      <td><?= $data[0] ?></td>
-                      <td><?= number_format($data[1], 0, ',', '.') ?></td>
-                      <td><?= number_format($data[2], 0, ',', '.') ?></td>
-                      <td><?= number_format($data[3], 0, ',', '.') ?></td>
-                      <td><?= number_format($data[4], 0, ',', '.') ?></td>
-                      <td><?= number_format($data[5], 0, ',', '.') ?></td>
-                      <td><?= number_format($data[6], 0, ',', '.') ?></td>
-                      <td><?= number_format($data[7], 0, ',', '.') ?></td>
-                    </tr>
-                  <?php endforeach; ?>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
     </div>
   </div><!-- /.container-fluid -->
 </section>

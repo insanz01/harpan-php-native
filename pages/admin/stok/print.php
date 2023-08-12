@@ -1,7 +1,7 @@
 <?php
   include "config/config.php";
-  include "controller/admin-harga-grosir.controller.php";
-  include "controller/verified-get-grosir.controller.php";
+  include "controller/admin-harga-stok.controller.php";
+  include "controller/verified-get-stok.controller.php";
 
   $role_id = 0;
   if(isset($_SESSION["SESS_HARPAN_ROLE_ID"])) {
@@ -13,12 +13,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Harga Grosir</h1>
+        <h1 class="m-0">Harga Produsen</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Harga</a></li>
-          <li class="breadcrumb-item active">Grosir</li>
+          <li class="breadcrumb-item active">Produsen</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -37,7 +37,7 @@
       <div class="col-8">
         <div class="form-group">
           <?php if($role_id != 3): ?>
-            <a href="#" class="btn btn-info float-right" role="button" data-toggle="modal" data-target="#laporanModal" data-id="harga-grosir" onclick="printLaporan(this)">
+            <a href="#" class="btn btn-info float-right" role="button" data-toggle="modal" data-target="#laporanModal" data-id="harga-produsen" onclick="printLaporan(this)">
               <i class="fas fa-fw fa-print"></i>
               Cetak
             </a>
@@ -86,7 +86,6 @@
                     <td><?= $dt['satuan'] ?></td>
                     <td><?= $dt['harga'] ?></td>
                     <td><?= $dt['created_at'] ?></td>
-                  </tr>
                 <?php endforeach; ?>
               </tbody>
             </table>
@@ -99,6 +98,7 @@
 </section>
 
 <!-- Modal -->
+
 <!-- Modal Hapus -->
 <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
   <div class="modal-dialog">
