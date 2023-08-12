@@ -1,7 +1,7 @@
 <?php
   include "config/config.php";
-  include "controller/admin-harga-distributor.controller.php";
-  include "controller/verified-get-distributor.controller.php";
+  include "controller/admin-harga-eceran.controller.php";
+  include "controller/verified-get-eceran.controller.php";
 
   $role_id = 0;
   if(isset($_SESSION["SESS_HARPAN_ROLE_ID"])) {
@@ -13,12 +13,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Harga Distributor</h1>
+        <h1 class="m-0">Harga Eceran</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="#">Harga</a></li>
-          <li class="breadcrumb-item active">Distributor</li>
+          <li class="breadcrumb-item"><a href="#">Data Harga</a></li>
+          <li class="breadcrumb-item active">Eceran</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -75,8 +75,6 @@
                   <th>Satuan</th>
                   <th>Harga</th>
                   <th>Tanggal</th>
-                 
-                 
                 </tr>
               </thead>
               <tbody>
@@ -88,8 +86,6 @@
                     <td><?= $dt['satuan'] ?></td>
                     <td><?= $dt['harga'] ?></td>
                     <td><?= $dt['created_at'] ?></td>
-                    
-                   
                   </tr>
                 <?php endforeach; ?>
               </tbody>
@@ -99,7 +95,6 @@
       </div>
     </div>
     <!-- /.row -->
-     <br>
    
   </div><!-- /.container-fluid -->
 </section>

@@ -1,7 +1,7 @@
 <?php
   include "config/config.php";
-  include "controller/admin-harga-distributor.controller.php";
-  include "controller/verified-get-distributor.controller.php";
+  include "controller/admin-harga-grosir.controller.php";
+  include "controller/verified-get-grosir.controller.php";
 
   $role_id = 0;
   if(isset($_SESSION["SESS_HARPAN_ROLE_ID"])) {
@@ -13,12 +13,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Harga Distributor</h1>
+        <h1 class="m-0">Harga Grosir</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Harga</a></li>
-          <li class="breadcrumb-item active">Distributor</li>
+          <li class="breadcrumb-item active">Grosir</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -37,7 +37,7 @@
       <div class="col-8">
         <div class="form-group">
           <?php if($role_id != 3): ?>
-            <a href="#" class="btn btn-info float-right" role="button" data-toggle="modal" data-target="#laporanModal" data-id="harga-distributor" onclick="printLaporan(this)">
+            <a href="#" class="btn btn-info float-right" role="button" data-toggle="modal" data-target="#laporanModal" data-id="harga-grosir" onclick="printLaporan(this)">
               <i class="fas fa-fw fa-print"></i>
               Cetak
             </a>
@@ -75,8 +75,6 @@
                   <th>Satuan</th>
                   <th>Harga</th>
                   <th>Tanggal</th>
-                 
-                 
                 </tr>
               </thead>
               <tbody>
@@ -88,8 +86,25 @@
                     <td><?= $dt['satuan'] ?></td>
                     <td><?= $dt['harga'] ?></td>
                     <td><?= $dt['created_at'] ?></td>
-                    
-                   
+                    <td>
+                      <?php if($dt['approved_at']): ?>
+                        Terverifikasi
+                      <?php else: ?>
+                        Belum Diverifikasi
+                      <?php endif; ?>
+                    </td>
+                    <td>
+                      <?php if($role_id != 1): ?>
+                        <a href="#" class="btn btn-danger float-right" role="button" data-toggle="modal" data-target="#hapusModal" onclick="selectDeleteData(<?= $dt['id'] ?>)">
+                          <i class="fas fa-fw fa-trash"></i>
+                          Hapus
+                        </a>
+                        <a href="?page=distributor&action=edit&id=<?= $dt['id'] ?>" class="btn btn-primary float-right mx-2" role="button">
+                          <i class="fas fa-fw fa-edit"></i>
+                          Ubah
+                        </a>
+                      <?php endif; ?>
+                    </td>
                   </tr>
                 <?php endforeach; ?>
               </tbody>
@@ -100,38 +115,19 @@
     </div>
     <!-- /.row -->
      <br>
-   
+    <div class="row">
+      <div class="col">
+        <form method="post" class="form-inline">
+           <input type="date" name="tgl_mulai" class="form-control">
+           <input type="date" name="tgl_selesai" class="form-control ml-2">
+           <button type="submit" name="filter-tanggal" class="btn btn-info ml-2">Filter</button>
+        </form>
+       </div>
+    </div>
   </div><!-- /.container-fluid -->
 </section>
 
 <!-- Modal -->
-<div class="modal fade" id="cetakModal" tabindex="-1" aria-labelledby="cetakModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="cetakModalLabel">Cetak Data</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="">Laporan Periode (Tanggal Awal)</label>
-          <input type="date" class="form-control" name="cetak-tanggal-awal">
-        </div>
-        <div class="form-group">
-          <label for="">Laporan Periode (Tanggal Akhir)</label>
-          <input type="date" class="form-control" name="cetak-tanggal-akhir">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-        <button type="button" onclick="printReport()" class="btn btn-primary">Cetak</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- Modal Hapus -->
 <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
   <div class="modal-dialog">
