@@ -19,7 +19,6 @@
 
     //kode acak disimpan di dalam session agar data dapat dipassing ke halaman lain
     $_SESSION["code"] = $code;
-    
 
     //membuat background
     $wh = imagecreatetruecolor(173, 50);
